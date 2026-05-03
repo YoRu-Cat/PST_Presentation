@@ -922,6 +922,54 @@
       }
     }
 
+    .chapter-title {
+      grid-template-columns: 1fr;
+    }
+
+    .chapter-title .chapter-copy {
+      max-width: 860px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 60px 40px;
+    }
+
+    .chapter-title .chapter-index {
+      position: static;
+      display: inline-block;
+      margin-bottom: 18px;
+    }
+
+    .chapter-title .eyebrow {
+      justify-content: center;
+      display: inline-flex;
+    }
+
+    .chapter-title h2 {
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      margin-top: 18px;
+    }
+
+    .chapter-title .chapter-title-sub {
+      color: var(--accent-2);
+    }
+
+    .chapter-title .lede {
+      margin: 20px auto;
+      max-width: 58ch;
+    }
+
+    .chapter-title .pill-row {
+      justify-content: center;
+    }
+
+    .chapter-title .presenter-byline {
+      margin-top: 28px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+    }
+
     @media (max-width: 900px) {
       .topbar {
         height: auto;
@@ -996,8 +1044,8 @@
     <div class="nav-list" id="navList"></div>
   </aside>
 
-  <div class="jump-controls" aria-label="Section controls">
-    <button class="jump-button" id="moveUpButton" aria-label="Move to previous section" hidden>
+  <div class="jump-controls">
+    <button class="jump-button" id="moveUpButton" aria-label="Move to previous section">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12 6l-7 7 1.4 1.4L11 9.8V18h2V9.8l4.6 4.6L19 13z" />
       </svg>
@@ -1019,18 +1067,17 @@
             <span class="accent">Pakistan</span>
           </h1>
           <p>
-            A cinematic scrollytelling deck on how General Muhammad Zia-ul-Haq held power in a volatile frontline state:
-            through Islamization, military cooptation, Afghan war pressure, selective economic luck, and a political
-            system
-            built to survive without real democratic legitimacy.
+            A cinematic scrollytelling deck on how General Muhammad Zia-ul-Haq held power in a volatile frontline
+            state: through Islamization, military cooptation, Afghan war pressure, selective economic luck, and a
+            political system built to survive without real democratic legitimacy.
           </p>
           <div class="hero-actions">
-            <button class="button primary" data-jump="about">Start the story</button>
+            <button class="button primary" data-jump="slide1">Start the story</button>
             <button class="button" data-jump="conclusion">Jump to synthesis</button>
           </div>
           <div class="hero-stats">
             <div class="stat">
-              <strong>1977-1988</strong>
+              <strong>11 yrs</strong>
               <span>Zia's rule spans coup, martial law, and the slow return to partyless elections.</span>
             </div>
             <div class="stat">
@@ -1050,8 +1097,9 @@
 
         <div class="hero-stage">
           <div class="hero-image">
-            <img src="https://en.wikipedia.org/wiki/Special:FilePath/General_Muhammad_Zia-Ul-Haq.jpg"
-              alt="Portrait of General Muhammad Zia-ul-Haq" />
+            <img
+              src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Muhammad_Zia-ul-Haq_with_his_father_%281929%29.jpg"
+              alt="Muhammad Zia-ul-Haq with his father" />
           </div>
           <div class="hero-badges">
             <div class="badge-grid">
@@ -1067,360 +1115,507 @@
             </div>
           </div>
         </div>
-      </section>
+        </section>
 
-      <!-- Replaced chapters: exact 16 slides with presenter attributions -->
-      <section class="chapter visible" id="slide1" data-scroll-section data-accent="#f14e3f" data-accent-2="#36d0c3">
-        <div class="chapter-copy">
-          <div class="chapter-index">01</div>
-          <div class="eyebrow">Dawar</div>
-          <h2>General Zia ul‑Haq — rise, rule, and the coalition that kept him in power.</h2>
-          <p class="lede">Rise to power: Zia overthrew Prime Minister Zulfikar Ali Bhutto in the 5 July 1977 "Operation
-            Fair Play" coup — a takeover that began with a 90‑day promise and extended into an 11‑year presidency
-            (1977–1988). He institutionalized Islamization (Sharia benches, Hudood Ordinances, Zakat/Ushr) while
-            provoking deep social conflict with women's groups, lawyers, and Shia communities. The Soviet invasion of
-            Afghanistan converted Pakistan into a U.S.‑backed frontline state and provided major funding and
-            geopolitical cover.</p>
-          <div class="detail-quote">This presentation follows Baxter: identify the interest groups, resources, and
-            shocks that made regime survival possible — and show the data behind those claims.</div>
-          <div class="pill-row">
-            <span class="pill">Westview Press, 1985</span>
-            <span class="pill">Edited by Craig Baxter</span>
-            <span class="pill">Interest group model</span>
-            <span class="pill">Multi-author analysis</span>
+        <section class="chapter visible" id="slide1" data-scroll-section data-accent="#f14e3f" data-accent-2="#36d0c3">
+          <div class="chapter-copy">
+            <div class="chapter-index">01</div>
+            <div class="eyebrow">Dawar</div>
+            <h2>General Zia ul‑Haq & His Era</h2>
+            <ul class="bullet-grid">
+              <li><strong>Rise to Power:</strong> Overthrew PM Bhutto in the 1977 "Operation Fair Play" coup, turning a 90‑day promise into an 11‑year rule.</li>
+              <li><strong>Ideological Shift:</strong> Spearheaded formal Islamization through Shariah courts, Hudood Ordinances, and Zakat.</li>
+              <li><strong>Deep Divisions:</strong> Sweeping reforms sparked pushback from women's groups, lawyers, and the Shia community.</li>
+              <li><strong>Cold War Dynamics:</strong> Leveraged the Soviet‑Afghan War to position Pakistan as a U.S.‑backed "frontline state."</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
           </div>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/General_Muhammad_Zia-Ul-Haq.jpg"
-            alt="Portrait of General Muhammad Zia-ul-Haq" />
-          <figcaption>Portrait of General Muhammad Zia‑ul‑Haq — source: Wikimedia Commons (file name shown).
-          </figcaption>
-        </figure>
-      </section>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/President_Mohammad_Zia_Ul_Haq.jpg" alt="President Mohammad Zia ul-Haq official portrait" />
+            <figcaption>President Mohammad Zia ul‑Haq — official portrait. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
 
-      <section class="chapter" id="slide2" data-scroll-section data-accent="#36d0c3" data-accent-2="#f0b846">
-        <div class="chapter-copy">
-          <div class="chapter-index">02</div>
-          <div class="eyebrow">Dawar</div>
-          <h2>Craig Baxter — the analytic frame and purpose of the volume.</h2>
-          <p class="lede">Craig Baxter assembled contributors to explain how Pakistan's 1977–1985 transformations should
-            be read by policymakers: focus on coalitions, resources, and external shocks rather than rhetoric. The
-            volume treats Pakistan as a frontline state whose domestic politics were heavily shaped by geopolitical
-            imperatives and migration flows.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Craig_Baxter.jpg" alt="Craig Baxter" />
-          <figcaption>Craig Baxter (editor) — source: Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide3" data-scroll-section data-accent="#f0b846" data-accent-2="#f14e3f">
-        <div class="chapter-copy">
-          <div class="chapter-index">03</div>
-          <div class="eyebrow">Dawar</div>
-          <h2>Book structure — interest groups, resources, and shocks.</h2>
-          <p class="lede">The book maps clerics, military, landlords, urban elites, and migrants as overlapping
-            constituencies; it tracks financial flows (aid, remittances), resource shocks, and institutional changes
-            (elections, amendments) to explain regime durability.</p>
-          <ul class="bullet-grid">
-            <li>Focus on coalitions, not popular legitimacy.</li>
-            <li>Resources: Gulf remittances, foreign aid, military patronage.</li>
-            <li>Shocks: 1977 coup, 1979 Soviet invasion of Afghanistan.</li>
-            <li>Instruments: Islamization, controlled elections, local bodies.</li>
-          </ul>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Westview_Press_logo.png" alt="Westview Press" />
-          <figcaption>Westview Press, 1985 — source: Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide4" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
-        <div class="chapter-copy">
-          <div class="chapter-index">04</div>
-          <div class="eyebrow">Dawar</div>
-          <h2>Core arguments — survival through managed coalitions and favorable external conditions.</h2>
-          <p class="lede">Zia's survival relied on: calibrated repression, ideological legitimization (Islamization),
-            cooptation of elites, and external patronage tied to the Afghan war. These combined to create a resilient
-            but brittle system.</p>
-          <div class="detail-quote">Circumstances mattered as much as strategy: aid, migrants, and frontier security
-            created the conditions for a long rule.</div>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img
-            src="https://en.wikipedia.org/wiki/Special:FilePath/President_Ronald_Reagan_and_Bill_Clark_meeting_with_President_Mohammad_Zia_Ul_Haq.jpg"
-            alt="Zia with Reagan" />
-          <figcaption>U.S.-Pakistan alignment during the Afghan war — source: Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide5" data-scroll-section data-accent="#f14e3f" data-accent-2="#f0b846">
-        <div class="chapter-copy">
-          <div class="chapter-index">05</div>
-          <div class="eyebrow">Ruhan</div>
-          <h2>Urban Pakistan — stresses, migration, and political fragmentation.</h2>
-          <p class="lede">Rapid urbanization produced unplanned growth, class polarization, and an expanding urban poor.
-            Karachi's demographic change exemplified these pressures, which the regime managed partly through selective
-            economic openings and repression.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Karachi_skyline.jpg" alt="Karachi skyline" />
-          <figcaption>Karachi's urban growth and tensions — Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide6" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
-        <div class="chapter-copy">
-          <div class="chapter-index">06</div>
-          <div class="eyebrow">Ruhan</div>
-          <h2>Gulf safety valve — remittances, labor migration, and consumption buffers.</h2>
-          <p class="lede">Gulf migration delivered large remittances (peaks > $3 billion/year), absorbing urban and
-            rural pressures by raising household incomes and fuelling consumption — an accidental stabilizer for the
-            regime.</p>
-          <ul class="bullet-grid">
-            <li>Remittances supported household consumption and reduced unrest.</li>
-            <li>Gulf labor migration was a major structural safety valve.</li>
-            <li>Dependency created long-term vulnerability to oil/Gulf cycles.</li>
-          </ul>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Gulf_migrant_workers.jpg"
-            alt="Gulf migrant workers" />
-          <figcaption>Gulf migration and remittances — source: Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide7" data-scroll-section data-accent="#f0b846" data-accent-2="#36d0c3">
-        <div class="chapter-copy">
-          <div class="chapter-index">07</div>
-          <div class="eyebrow">Ruhan</div>
-          <h2>Rural power — landlords, Green Revolution, and enlistment as safety valves.</h2>
-          <p class="lede">Zia preserved landed interests while allowing limited mechanization; displaced tenants and
-            landless labor were often absorbed into the military or through migration, maintaining rural loyalty to the
-            regime.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Pakistan_rural_farming.jpg"
-            alt="Rural Pakistan farming" />
-          <figcaption>Rural land relations and the Green Revolution — Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide8" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
-        <div class="chapter-copy">
-          <div class="chapter-index">08</div>
-          <div class="eyebrow">Asadullah</div>
-          <h2>Economic paradox — strong growth, weak investment, and low savings.</h2>
-          <p class="lede">Mid-1980s GDP growth averaged near 6%; yet national savings were low (~7–8% of GDP), and
-            private investment remained muted because of policy uncertainty and nationalization memories. Growth
-            coexisted with structural fragility.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Pakistan_economic_activity.jpg"
-            alt="Economic activity" />
-          <figcaption>Economic performance with underlying vulnerabilities — Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide9" data-scroll-section data-accent="#f14e3f" data-accent-2="#36d0c3">
-        <div class="chapter-copy">
-          <div class="chapter-index">09</div>
-          <div class="eyebrow">Asadullah</div>
-          <h2>Economic performance — sectoral wins and informal expansion.</h2>
-          <p class="lede">Policy outcomes included grain self-sufficiency, export pushes in textiles, and an enlarged
-            informal economy (smuggling, services). These created visible gains without changing the distribution of
-            political power.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Pakistan_textile_workers.jpg"
-            alt="Textile workers" />
-          <figcaption>Export sectors and informal growth — Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide10" data-scroll-section data-accent="#36d0c3" data-accent-2="#f0b846">
-        <div class="chapter-copy">
-          <div class="chapter-index">10</div>
-          <div class="eyebrow">Asadullah</div>
-          <h2>Vulnerabilities — low savings, aid dependence, and political exclusion.</h2>
-          <ul class="bullet-grid">
-            <li>Low national savings (~7–8% GDP).</li>
-            <li>Heavy reliance on aid and remittances.</li>
-            <li>Political exclusion that left durable opposition in urban professions.</li>
-          </ul>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Economic_chart_placeholder.png"
-            alt="Economic chart" />
-          <figcaption>Macro vulnerabilities summarized — Wikimedia Commons (placeholder).</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide11" data-scroll-section data-accent="#f14e3f" data-accent-2="#f0b846">
-        <div class="chapter-copy">
-          <div class="chapter-index">11</div>
-          <div class="eyebrow">Anas</div>
-          <h2>Military power — institutional reach and economic interests.</h2>
-          <p class="lede">The military expanded into civilian administration and commercial ventures; officers received
-            patronage and posts. External support (U.S. aid, equipment) increased the military's capacity and stake in
-            continuity.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Military_parade_Pakistan.jpg"
-            alt="Military parade" />
-          <figcaption>Military presence in public life — Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide12" data-scroll-section data-accent="#f0b846" data-accent-2="#36d0c3">
-        <div class="chapter-copy">
-          <div class="chapter-index">12</div>
-          <div class="eyebrow">Anas</div>
-          <h2>Refugee scale — ~2.86M by 1984 and concentrated border settlement.</h2>
-          <p class="lede">By the mid‑1980s Pakistan hosted the largest refugee population in the world: government
-            estimates near ~2.86 million by 1984; concentrated mostly in NWFP/Tribal Areas and Peshawar; majority
-            Pashtun and largely unskilled laborers.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img
-            src="https://en.wikipedia.org/wiki/Special:FilePath/Refugees_from_Afghanistan_in_Pakistan%2C_near_Islamabad.jpg"
-            alt="Afghan refugees near Islamabad" />
-          <figcaption>Afghan refugees in Pakistan — Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide13" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
-        <div class="chapter-copy">
-          <div class="chapter-index">13</div>
-          <div class="eyebrow">Anas</div>
-          <h2>Settlement patterns — camps, urban spillover, and failed relocation.</h2>
-          <p class="lede">~71% of refugees were in NWFP and tribal districts; relocation to Punjab largely failed. Over
-            time camp normalization (schools, leadership) reduced incentives to return.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Afghan_refugee_camp.jpg" alt="Refugee camp" />
-          <figcaption>Camp life and settlement patterns — Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide14" data-scroll-section data-accent="#f14e3f" data-accent-2="#36d0c3">
-        <div class="chapter-copy">
-          <div class="chapter-index">14</div>
-          <div class="eyebrow">Anas</div>
-          <h2>Refugee economy — labor markets, trucking, and informal sectors.</h2>
-          <p class="lede">Refugees provided labor in trucking, construction, retail, and services; estimated ~60,000
-            Afghan families worked in motorized transport alone, and refugees became embedded in local informal
-            economies.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Afghan_truck_drivers.jpg"
-            alt="Afghan truck drivers" />
-          <figcaption>Refugee labor in transport and services — Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide15" data-scroll-section data-accent="#36d0c3" data-accent-2="#f0b846">
-        <div class="chapter-copy">
-          <div class="chapter-index">15</div>
-          <div class="eyebrow">Anas</div>
-          <h2>Repatriation problem — long-term settlement and integration risks.</h2>
-          <p class="lede">Studies show a 4–5 year horizon after which repatriation becomes unlikely; normalized
-            schooling, camp leadership, and local economic ties reduce return incentives, creating a long-term
-            integration challenge for Pakistan.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Afghan_children_school.jpg"
-            alt="Afghan children in school" />
-          <figcaption>Education and normalization in camps — Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="chapter" id="slide16" data-scroll-section data-accent="#f0b846" data-accent-2="#f14e3f">
-        <div class="chapter-copy">
-          <div class="chapter-index">16</div>
-          <div class="eyebrow">Anas</div>
-          <h2>Afghan insurgency — external pressure, proxies, and the frontier state dynamic.</h2>
-          <p class="lede">The Soviet invasion and subsequent insurgency turned Pakistan into a frontline state: proxy
-            warfare, insurgent logistics, and foreign covert funding reshaped domestic politics and gave the regime
-            strategic importance that dampened some international pressures.</p>
-          <span class="source-line">Image source: Wikimedia Commons</span>
-        </div>
-        <figure class="chapter-media">
-          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Soviet_afghan_war_map.jpg"
-            alt="Soviet-Afghan war map" />
-          <figcaption>Afghan war dynamics and cross-border effects — Wikimedia Commons.</figcaption>
-        </figure>
-      </section>
-
-      <section class="outro" id="conclusion" data-scroll-section>
-        <div class="outro-copy">
-          <div class="eyebrow">Closing synthesis</div>
-          <h2>Baxter's verdict is simple: Zia survived because he managed the system better than his rivals managed
-            opposition.</h2>
-          <p class="lede">
-            The regime endured not through charisma, but through circumstance, coalition discipline, military power,
-            religious
-            legitimacy, and economic luck. It was accepted more than loved, stabilized more than democratized, and
-            preserved by
-            a world that treated Pakistan as strategically too important to fail.
-          </p>
-          <div class="pill-row">
-            <span class="pill">Circumstances over charisma</span>
-            <span class="pill">Coalition imperative</span>
-            <span class="pill">Economy as stabilizer</span>
-            <span class="pill">Contested legitimacy</span>
-            <span class="pill">Frontier state paradox</span>
+        <section class="chapter" id="slide2" data-scroll-section data-accent="#36d0c3" data-accent-2="#f0b846">
+          <div class="chapter-copy">
+            <div class="chapter-index">02</div>
+            <div class="eyebrow">Dawar</div>
+            <h2>Craig Baxter & Project Context</h2>
+            <ul class="bullet-grid">
+              <li><strong>Editor's Profile:</strong> Baxter blended academic political science with real-world U.S. diplomatic experience.</li>
+              <li><strong>Strategic Purpose:</strong> Commissioned by the U.S. State Dept as a briefing document for American policymakers on Pakistan.</li>
+              <li><strong>Policy Focus:</strong> Prioritises practical stability, interest groups, and policy implications over pure theory.</li>
+              <li><strong>Collaborative Expertise:</strong> Assembles top scholars for specialised chapters on economics, military, rural/urban sociology, and refugees.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
           </div>
-          <div class="credits">
-            <span>Images: Wikimedia Commons (file names shown in captions)</span>
-            <span>Presentation: HTML + GSAP; native smooth scrolling</span>
-            <span>Reference: Baxter, Zia's Pakistan (Westview, 1985)</span>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/President_Ronald_Reagan_and_Bill_Clark_meeting_with_President_Mohammad_Zia_Ul_Haq.jpg" alt="Reagan and Zia meeting" />
+            <figcaption>Reagan meeting Zia ul-Haq — the U.S.–Pakistan strategic alliance shaped the book's policy-oriented framing. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide3" data-scroll-section data-accent="#f0b846" data-accent-2="#f14e3f">
+          <div class="chapter-copy">
+            <div class="chapter-index">03</div>
+            <div class="eyebrow">Dawar</div>
+            <h2>Book Structure & The Five Lenses</h2>
+            <ul class="bullet-grid">
+              <li><strong>Central Question:</strong> How did Zia's regime survive by managing five key interest groups within Pakistani society?</li>
+              <li><strong>Urban & Rural:</strong> Military benefits and Gulf remittances acted as safety valves to keep transforming districts calm.</li>
+              <li><strong>Economic Paradox:</strong> Rapid growth fuelled by foreign aid and remittances, despite lacking a coherent economic philosophy.</li>
+              <li><strong>Military & Refugees:</strong> Details military expansion into civilian enterprises and predicts permanent Afghan refugee integration.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
           </div>
-          <div class="footer-note">
-            Thank You for linstening. Any questions, comments, or suggestions are very welcome.
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Pakistan_Army_Structure.png" alt="Pakistan Army structure" />
+            <figcaption>Structure of the Pakistan Army — mapping the institution behind the regime. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide4" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
+          <div class="chapter-copy">
+            <div class="chapter-index">04</div>
+            <div class="eyebrow">Dawar</div>
+            <h2>Core Arguments & Conclusion</h2>
+            <ul class="bullet-grid">
+              <li><strong>Survival vs. Legitimacy:</strong> Zia maintained power but never achieved genuine political legitimacy or public consent.</li>
+              <li><strong>Manufactured Mandates:</strong> The 1984 referendum illustrates how the regime generated votes, not genuine alternatives.</li>
+              <li><strong>Persistent Unrest:</strong> Despite strict control, Sindh was never genuinely pacified during Zia's rule.</li>
+              <li><strong>Temporary Stability:</strong> Military rule, economic windfalls, and Islamization could not provide structural long‑term stability.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
           </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/General_Muhammad_Zia-Ul-Haq.jpg" alt="General Muhammad Zia ul-Haq in military uniform" />
+            <figcaption>General Muhammad Zia ul-Haq in military uniform — Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide5" data-scroll-section data-accent="#f14e3f" data-accent-2="#f0b846">
+          <div class="chapter-copy">
+            <div class="chapter-index">05</div>
+            <div class="eyebrow">Ruhan</div>
+            <h2>Urban Pakistan Under Zia — Ch. 1 (LaPorte)</h2>
+            <ul class="bullet-grid">
+              <li><strong>Rapid Urbanisation:</strong> Karachi grew from 360,000 to 7 million; cities were structurally unprepared for that scale.</li>
+              <li><strong>Class Polarisation:</strong> Military-business elite vs. an expanding urban working poor — with a restive middle class in between.</li>
+              <li><strong>Middle-Class Dissent:</strong> Professionals (lawyers, academics) opposed martial law but remained politically isolated.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/KHIURBANSKYLINE.jpg" alt="Karachi urban skyline" />
+            <figcaption>Karachi urban skyline — the megacity that grew faster than its infrastructure. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide6" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
+          <div class="chapter-copy">
+            <div class="chapter-index">06</div>
+            <div class="eyebrow">Ruhan</div>
+            <h2>The Gulf Safety Valve — Ch. 1 (LaPorte)</h2>
+            <ul class="bullet-grid">
+              <li><strong>Mass Labour Migration:</strong> Millions of working-class Pakistanis moved to Gulf states during the 1970s–80s oil boom.</li>
+              <li><strong>Remittance Economy:</strong> $3B+ annually — not a policy outcome, but an accidental windfall that diffused urban pressure.</li>
+              <li><strong>Political Consequence:</strong> Rising household consumption absorbed discontent the state could not address through reform.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Al_Masjid_Nabavi_Madina_pakistani_labor_-_panoramio.jpg" alt="Pakistani workers at Al-Masjid al-Nabawi, Medina" />
+            <figcaption>Pakistani labourers at Al-Masjid al-Nabawi, Medina — symbol of the Gulf migration era. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide7" data-scroll-section data-accent="#f0b846" data-accent-2="#36d0c3">
+          <div class="chapter-copy">
+            <div class="chapter-index">07</div>
+            <div class="eyebrow">Ruhan</div>
+            <h2>Rural Power & Its Contradictions — Ch. 2 (Kennedy)</h2>
+            <ul class="bullet-grid">
+              <li><strong>Zamindar Accommodation:</strong> Zia preserved feudal landownership structures to retain rural political loyalty.</li>
+              <li><strong>Green Revolution Disruption:</strong> Mechanisation empowered medium landowners but displaced tenant farmers, creating a new landless class.</li>
+              <li><strong>Dual Safety Valve:</strong> Gulf migration and military enlistment — with strong benefit packages — absorbed rural surplus labour and forestalled unrest.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/a/a7/WheatFieldsPandjab.jpg" alt="Wheat fields in Punjab, Pakistan" />
+            <figcaption>Wheat fields in Punjab — the Green Revolution transformed agriculture and displaced thousands. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide8" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
+          <div class="chapter-copy">
+            <div class="chapter-index">08</div>
+            <div class="eyebrow">Asadullah</div>
+            <h2>Pakistan's Economic Paradox (pp. 47–50)</h2>
+            <p class="lede">Mid-1980s Pakistan was nearing middle-income status, comparable to South Korea and Taiwan — yet political instability remained high.</p>
+            <ul class="bullet-grid">
+              <li>Three explanations: growth creates tension; growth reduces unrest; politics operates independently. Adams argues all three are partially true.</li>
+              <li>Informal economy (remittances, smuggling, underground trade) made people "feel richer."</li>
+              <li>Growth reduces unrest only if expectations stay controlled — sudden loss of informal income turns growth into grievance.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/GDP_by_Province.jpg" alt="GDP by province Pakistan" />
+            <figcaption>GDP distribution by province illustrates Pakistan's uneven economic geography. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide9" data-scroll-section data-accent="#f14e3f" data-accent-2="#36d0c3">
+          <div class="chapter-copy">
+            <div class="chapter-index">09</div>
+            <div class="eyebrow">Asadullah</div>
+            <h2>Economic Performance Under Zia vs. Predecessors (pp. 51–58)</h2>
+            <div class="timeline">
+              <div class="timeline-row"><strong>Ayub</strong><span>~9.5% industrial growth — peak of Pakistan's early developmental state.</span></div>
+              <div class="timeline-row"><strong>Bhutto</strong><span>~7.4% growth — nationalisation disrupted private investment confidence.</span></div>
+              <div class="timeline-row"><strong>Zia</strong><span>Strong, balanced growth driven by remittances, foreign aid, and favourable conditions. Achieved food self-sufficiency and exported wheat; handled the cotton crisis quickly.</span></div>
+            </div>
+            <div class="detail-quote">Key idea: keep most people satisfied most of the time — Zia lacked a clear strategy but the results spoke for themselves.</div>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Pakistani_truck.jpg" alt="Decorated Pakistani truck" />
+            <figcaption>Pakistan's decorated truck culture embodies the informal transport economy that flourished under Zia. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide10" data-scroll-section data-accent="#36d0c3" data-accent-2="#f0b846">
+          <div class="chapter-copy">
+            <div class="chapter-index">10</div>
+            <div class="eyebrow">Asadullah</div>
+            <h2>Economic Vulnerabilities & Political Risk (pp. 58–62)</h2>
+            <ul class="bullet-grid">
+              <li>Private investment weak due to fear of nationalisation; public sector dominated.</li>
+              <li>Very low savings rate (7–8% of GDP) and heavy dependence on remittances and foreign aid.</li>
+              <li>Declining oil prices threatened remittance flows; Islamisation (zakat/ushr) caused social tensions seen as unfair to poorer groups.</li>
+              <li>Regional inequality increased (Punjab vs. NWFP/Baluchistan); military-business ties risked damaging public trust.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/89/President_Mohammad_Zia_Ul_Haq.jpg" alt="President Zia ul-Haq" />
+            <figcaption>Zia's regime oversaw growth that papered over deep structural vulnerabilities. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide11" data-scroll-section data-accent="#f14e3f" data-accent-2="#f0b846">
+          <div class="chapter-copy">
+            <div class="chapter-index">11</div>
+            <div class="eyebrow">Asadullah</div>
+            <h2>The Military: Institutional Power & Security Dilemmas (pp. 63–84)</h2>
+            <ul class="bullet-grid">
+              <li>Defence spending rose sharply; most funds went to salaries and benefits. ~20,000 troops stationed in Saudi Arabia.</li>
+              <li>Military officers controlled provincial governorships and top government positions.</li>
+              <li>National Logistics Cell expanded into commercial activities — smuggling links became a corruption risk.</li>
+              <li>U.S. aid ($3.2B + F-16s) signalled political support more than military balance against India's asymmetric threat.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Bomb_Shells_produced_at_POF_WAH.jpg" alt="Bomb shells at Pakistan Ordnance Factories, Wah" />
+            <figcaption>Pakistan Ordnance Factories, Wah — the military's industrial reach underpinned its political power. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide12" data-scroll-section data-accent="#f0b846" data-accent-2="#36d0c3">
+          <div class="chapter-copy">
+            <div class="chapter-index">12</div>
+            <div class="eyebrow">Anas</div>
+            <h2>The Afghan Refugee Crisis: Scale & Origins</h2>
+            <p class="lede">Afghan refugees were the largest refugee group in the world at the time — produced by three distinct waves of displacement.</p>
+            <div class="timeline">
+              <div class="timeline-row"><strong>1973</strong><span>Daoud's overthrow of the monarchy — first exodus.</span></div>
+              <div class="timeline-row"><strong>1978</strong><span>Marxist takeover under Taraki — second, larger wave.</span></div>
+              <div class="timeline-row"><strong>1979</strong><span>Soviet invasion — the largest wave. Pakistan estimated ~2.86 million refugees by 1984. 94% Pushtun; 86% unskilled labourers.</span></div>
+            </div>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Afghan_refugees_returning_from_Pakistan_in_2004.jpg" alt="Afghan refugees returning from Pakistan 2004" />
+            <figcaption>Afghan refugees returning from Pakistan in 2004 — decades after the crisis began. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide13" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
+          <div class="chapter-copy">
+            <div class="chapter-index">13</div>
+            <div class="eyebrow">Anas</div>
+            <h2>Settlement Patterns & Ethnic Tensions</h2>
+            <ul class="bullet-grid">
+              <li>71% concentrated in NWFP and Tribal Areas — so dense, registration was closed by 1982.</li>
+              <li>Relatively peaceful reception due to shared Pushtun ethnicity across the border.</li>
+              <li>Relocation to Punjab sparked deep friction — historical rivalry between Pushtuns and Punjabis.</li>
+              <li>Punjab camps found largely empty — refugees registered but refused to stay.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Pakistan_aid.jpg" alt="Pakistan Army distributing aid" />
+            <figcaption>Pakistan Army logistics and aid distribution — the state apparatus managing settlement. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide14" data-scroll-section data-accent="#f14e3f" data-accent-2="#36d0c3">
+          <div class="chapter-copy">
+            <div class="chapter-index">14</div>
+            <div class="eyebrow">Anas</div>
+            <h2>Refugee Economic Impact</h2>
+            <p class="lede">Refugees deeply penetrated Pakistan's economy — trucking, daily labour, retail, tailoring, and smuggling became Afghan economic niches.</p>
+            <ul class="bullet-grid">
+              <li>~60,000 Afghan families supported by the motorised transport sector alone.</li>
+              <li>Short-term buffer: 3.5 million Pakistanis working abroad created job vacancies refugees filled.</li>
+              <li>Long-term risk: returning Pakistanis would increase competition, drive down wages, and fuel resentment.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/Pakistani_truck.jpg" alt="Decorated Pakistani truck" />
+            <figcaption>Pakistan's trucking sector became one of the primary economic niches occupied by Afghan refugees. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide15" data-scroll-section data-accent="#36d0c3" data-accent-2="#f0b846">
+          <div class="chapter-copy">
+            <div class="chapter-index">15</div>
+            <div class="eyebrow">Anas</div>
+            <h2>The Repatriation Problem</h2>
+            <p class="lede">Studies show a critical turning point at 4–5 years — after which return becomes increasingly unlikely. Camp life normalises; ties to Afghanistan fade.</p>
+            <ul class="bullet-grid">
+              <li>Children entering Pakistani schools and losing connection with Afghanistan.</li>
+              <li>New "ration malik" leaders emerged whose power depended on camp life — little incentive to encourage return.</li>
+              <li>Risk of permanent settlement compared directly to the Palestinian situation in Lebanon and Jordan.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/62/Afghan_refugees_returning_from_Pakistan_in_2004.jpg" alt="Afghan refugees returning from Pakistan 2004" />
+            <figcaption>Repatriation decades later — the 4–5 year normalisation threshold proved accurate. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide16" data-scroll-section data-accent="#f0b846" data-accent-2="#f14e3f">
+          <div class="chapter-copy">
+            <div class="chapter-index">16</div>
+            <div class="eyebrow">Anas</div>
+            <h2>The Afghan Insurgency</h2>
+            <ul class="bullet-grid">
+              <li>By late 1984, U.S. covert funding for the mujahideen was expanding to ~$200 million/year.</li>
+              <li>Soviet strategy shifted to forced depopulation — described as "migratory genocide" — to eliminate insurgent support networks.</li>
+              <li>Mujahideen were fragmented; Pakistan dealt mainly with Pushtun and Islamist factions.</li>
+              <li>Risk: escalating U.S. aid could provoke Soviet cross-border retaliation against Pakistan.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/SovietafghanwarTanksHelicopters.jpg" alt="Soviet tanks and helicopters in Afghanistan" />
+            <figcaption>Soviet armour and aviation in Afghanistan — the war that made Pakistan a frontline state. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <!-- Critical Analysis section — Hamdan -->
+        <section class="chapter chapter-title" id="slide17" data-scroll-section data-accent="#f14e3f" data-accent-2="#36d0c3">
+          <div class="chapter-copy">
+            <div class="chapter-index">17</div>
+            <div class="eyebrow">Section Break</div>
+            <h2>Critical<br><span class="chapter-title-sub">Analysis</span></h2>
+            <p class="lede">A critical examination of the scholarly perspectives in <em>Zia's Pakistan</em> — evaluating their strengths, limitations, and analytical framing.</p>
+            <div class="pill-row">
+              <span class="pill">LaPorte</span>
+              <span class="pill">John Adams</span>
+              <span class="pill">Rodney W. Jones</span>
+              <span class="pill">C. H. Kennedy</span>
+              <span class="pill">Grant M. Farr</span>
+            </div>
+            <p class="presenter-byline">Presented by Hamdan</p>
+          </div>
+        </section>
+
+        <section class="chapter" id="slide18" data-scroll-section data-accent="#36d0c3" data-accent-2="#f0b846">
+          <div class="chapter-copy">
+            <div class="chapter-index">18</div>
+            <div class="eyebrow">Hamdan</div>
+            <h2>LaPorte: Remittances as a Safety Valve</h2>
+            <p class="lede">LaPorte praises Zia's overseas worker migration policy, arguing that remittances act as a safety valve — calming the economy and bringing prosperity to upper and middle classes.</p>
+            <div class="detail-quote">"Remittances have brought immense prosperity to upper and middle class households and acted as a powerful stabilising force on the economy." — LaPorte</div>
+            <div class="pill-row">
+              <span class="pill">Accidental windfall</span>
+              <span class="pill">Prosperity buffer</span>
+              <span class="pill">Gulf oil boom</span>
+              <span class="pill">$3B+ annually</span>
+            </div>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/Al_Masjid_Nabavi_Madina_pakistani_labor_-_panoramio.jpg" alt="Pakistani workers at Al-Masjid al-Nabawi, Medina" />
+            <figcaption>Pakistani labourers in Medina — the Gulf migration wave transformed household incomes back home. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide19" data-scroll-section data-accent="#f14e3f" data-accent-2="#36d0c3">
+          <div class="chapter-copy">
+            <div class="chapter-index">19</div>
+            <div class="eyebrow">Hamdan</div>
+            <h2>Adams: The Case for "Muddling Through"</h2>
+            <p class="lede">John Adams argues that Pakistan's economic success under Zia makes a strong case for ad-hoc "muddling through" — rather than strictly adhering to coherent, rigorous economic planning.</p>
+            <div class="detail-quote">"Pakistan's growth under Zia suggests that pragmatic, piecemeal economic management can outperform ideologically rigid plans in developing economies." — Adams</div>
+            <div class="pill-row">
+              <span class="pill">No economic master plan</span>
+              <span class="pill">Pragmatic adaptation</span>
+              <span class="pill">Results-driven policy</span>
+            </div>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/GDP_by_Province.jpg" alt="Pakistan GDP by province" />
+            <figcaption>Pakistan's provincial GDP — growth was uneven but real, supporting Adams' pragmatist argument. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide20" data-scroll-section data-accent="#f0b846" data-accent-2="#36d0c3">
+          <div class="chapter-copy">
+            <div class="chapter-index">20</div>
+            <div class="eyebrow">Hamdan</div>
+            <h2>Jones: Military Business & the Fauji Foundation</h2>
+            <p class="lede">Rodney W. Jones notes that the military deeply penetrated civil administration and the public sector, using the Fauji Foundation and the NLC to provide well-paid jobs for retiring officers.</p>
+            <div class="detail-quote">Jones frames this as a successful co-optation strategy — keeping the officer corps satisfied and bound to the regime's continuation.</div>
+            <ul class="bullet-grid">
+              <li>Fauji Foundation operated cement, fertiliser, and food industries.</li>
+              <li>NLC controlled vast transport networks, including Afghan refugee logistics.</li>
+              <li>Post-service patronage created a permanent vested interest in regime continuity.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Bomb_Shells_produced_at_POF_WAH.jpg" alt="Pakistan Ordnance Factories, Wah" />
+            <figcaption>Pakistan Ordnance Factories, Wah — defence production as a pillar of the military's economic empire. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide21" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
+          <div class="chapter-copy">
+            <div class="chapter-index">21</div>
+            <div class="eyebrow">Hamdan</div>
+            <h2>Kennedy: Avoiding Rural Unrest in Punjab & NWFP</h2>
+            <p class="lede">Charles H. Kennedy argues that Zia successfully avoided serious rural unrest in Punjab and NWFP by maintaining the traditional power status quo — avoiding the radical land reforms of previous regimes.</p>
+            <div class="detail-quote">Unlike Bhutto's disruptive nationalisations, Zia's accommodation of feudal landowners kept the countryside politically stable.</div>
+            <div class="pill-row">
+              <span class="pill">Status quo preservation</span>
+              <span class="pill">No land reform disruption</span>
+              <span class="pill">Feudal alliance</span>
+              <span class="pill">Rural stability</span>
+            </div>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Derawar-fort-pak.png" alt="Derawar Fort, Bahawalpur" />
+            <figcaption>Derawar Fort, Bahawalpur — the old landed prestige that Zia carefully preserved. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide22" data-scroll-section data-accent="#f14e3f" data-accent-2="#f0b846">
+          <div class="chapter-copy">
+            <div class="chapter-index">22</div>
+            <div class="eyebrow">Hamdan</div>
+            <h2>Farr: Afghan Refugees Handled Surprisingly Smoothly</h2>
+            <p class="lede">Grant M. Farr states that while hosting nearly three million Afghan refugees presents great logistical difficulties, the situation has been handled surprisingly smoothly and without major violence.</p>
+            <div class="detail-quote">Farr credits shared Pushtun ethnicity, generous international aid, and the NLC's logistical capacity for Pakistan's relatively successful refugee management.</div>
+            <div class="pill-row">
+              <span class="pill">~3 million refugees</span>
+              <span class="pill">No major violence</span>
+              <span class="pill">UNHCR support</span>
+              <span class="pill">Logistical success</span>
+            </div>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Pakistan_aid.jpg" alt="Pakistan Army distributing aid" />
+            <figcaption>Pakistan Army aid distribution — the logistics capacity that enabled relatively smooth refugee management. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="chapter" id="slide23" data-scroll-section data-accent="#f0b846" data-accent-2="#f14e3f">
+          <div class="chapter-copy">
+            <div class="chapter-index">23</div>
+            <div class="eyebrow">Hamdan</div>
+            <h2>The Birth of the "Kalashnikov Culture" & Narco-Economy</h2>
+            <p class="lede">The Afghan war's most damaging legacy for Pakistan was the proliferation of weapons and narcotics — the so-called "Kalashnikov culture" — which fundamentally transformed Pakistani society.</p>
+            <ul class="bullet-grid">
+              <li>U.S.-supplied weapons for the mujahideen flooded Pakistani markets and criminal networks.</li>
+              <li>Afghan opium trade expanded massively, turning Pakistan into a major heroin transit hub.</li>
+              <li>Sectarian militias and armed political groups took root in urban centres, especially Karachi.</li>
+              <li>Long-term consequences: destabilisation of cities and entrenchment of armed non-state actors.</li>
+            </ul>
+            <span class="source-line">Image: Wikimedia Commons</span>
+          </div>
+          <figure class="chapter-media">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/AK47.jpg" alt="AK-47 Kalashnikov rifle" />
+            <figcaption>The AK-47 — symbol of Pakistan's "Kalashnikov culture," a direct legacy of the Soviet-Afghan war. Wikimedia Commons.</figcaption>
+          </figure>
+        </section>
+
+        <section class="outro" id="conclusion" data-scroll-section>
+          <div class="outro-copy">
+            <div class="eyebrow">Closing synthesis</div>
+            <h2>Baxter's verdict: Zia survived because he managed the system better than his rivals managed opposition.</h2>
+            <p class="lede">The regime endured through circumstance, coalition discipline, military power, religious legitimacy, and economic luck. It was accepted more than loved, stabilised more than democratised — and preserved by a world that treated Pakistan as strategically too important to fail. The Kalashnikov culture and narco-economy it left behind, however, proved far harder to govern than the regime that created the conditions for them.</p>
+            <div class="pill-row">
+              <span class="pill">Circumstances over charisma</span>
+              <span class="pill">Coalition imperative</span>
+              <span class="pill">Economy as stabiliser</span>
+              <span class="pill">Contested legitimacy</span>
+              <span class="pill">Frontier state paradox</span>
+              <span class="pill">Kalashnikov legacy</span>
+            </div>
+            <div class="credits">
+              <span>Dawar: Slides 1–4</span>
+              <span>Ruhan: Slides 5–7</span>
+              <span>Asadullah: Slides 8–11</span>
+              <span>Anas: Slides 12–16</span>
+              <span>Hamdan: Slides 17–23</span>
+            </div>
+            <div class="footer-note">
+              Thank you for listening. Any questions, comments, or suggestions are very welcome.
+            </div>
+          </div>
+        </section>
+        </main>
         </div>
-      </section>
-    </main>
-  </div>
 
-  <script>
-    const sections = [
-      { id: 'slide1', label: 'General Zia', note: 'Dawar' },
-      { id: 'slide2', label: 'Craig Baxter', note: 'Dawar' },
-      { id: 'slide3', label: 'Book Structure', note: 'Dawar' },
-      { id: 'slide4', label: 'Core Arguments', note: 'Dawar' },
-      { id: 'slide5', label: 'Urban Pakistan', note: 'Ruhan' },
-      { id: 'slide6', label: 'Gulf Safety Valve', note: 'Ruhan' },
-      { id: 'slide7', label: 'Rural Power', note: 'Ruhan' },
-      { id: 'slide8', label: 'Economic Paradox', note: 'Asadullah' },
-      { id: 'slide9', label: 'Economic Performance', note: 'Asadullah' },
-      { id: 'slide10', label: 'Vulnerabilities', note: 'Asadullah' },
-      { id: 'slide11', label: 'Military Power', note: 'Anas' },
-      { id: 'slide12', label: 'Refugee Scale', note: 'Anas' },
-      { id: 'slide13', label: 'Settlement Patterns', note: 'Anas' },
-      { id: 'slide14', label: 'Refugee Economy', note: 'Anas' },
-      { id: 'slide15', label: 'Repatriation Problem', note: 'Anas' },
-      { id: 'slide16', label: 'Afghan Insurgency', note: 'Anas' }
-    ];
+        <script>
+          const sections = [
+            { id: 'slide1', label: 'General Zia', note: 'Dawar' },
+            { id: 'slide2', label: 'Craig Baxter', note: 'Dawar' },
+            { id: 'slide3', label: 'Book Structure', note: 'Dawar' },
+            { id: 'slide4', label: 'Core Arguments', note: 'Dawar' },
+            { id: 'slide5', label: 'Urban Pakistan', note: 'Ruhan' },
+            { id: 'slide6', label: 'Gulf Safety Valve', note: 'Ruhan' },
+            { id: 'slide7', label: 'Rural Power', note: 'Ruhan' },
+            { id: 'slide8', label: 'Economic Paradox', note: 'Asadullah' },
+            { id: 'slide9', label: 'Econ. Performance', note: 'Asadullah' },
+            { id: 'slide10', label: 'Vulnerabilities', note: 'Asadullah' },
+            { id: 'slide11', label: 'Military Power', note: 'Asadullah' },
+            { id: 'slide12', label: 'Refugee Scale', note: 'Anas' },
+            { id: 'slide13', label: 'Settlement Patterns', note: 'Anas' },
+            { id: 'slide14', label: 'Refugee Economy', note: 'Anas' },
+            { id: 'slide15', label: 'Repatriation', note: 'Anas' },
+            { id: 'slide16', label: 'Afghan Insurgency', note: 'Anas' },
+            { id: 'slide17', label: 'Critical Analysis', note: 'Hamdan' },
+            { id: 'slide18', label: 'Remittances', note: 'Hamdan' },
+            { id: 'slide19', label: 'Muddling Through', note: 'Hamdan' },
+            { id: 'slide20', label: 'Military Business', note: 'Hamdan' },
+            { id: 'slide21', label: 'Rural Stability', note: 'Hamdan' },
+            { id: 'slide22', label: 'Refugee Mgmt', note: 'Hamdan' },
+            { id: 'slide23', label: 'Kalashnikov Culture', note: 'Hamdan' }
+          ];
 
-    const navList = document.getElementById('navList');
-    navList.innerHTML = sections.map((section, index) => `
+          const navList = document.getElementById('navList');
+          navList.innerHTML = sections.map((section, index) => `
       <button class="nav-item" data-target="${section.id}" aria-label="Go to ${section.label}">
         <span class="nav-num">${String(index + 1).padStart(2, '0')}</span>
         <span>
@@ -1430,279 +1625,281 @@
       </button>
     `).join('');
 
-    const scrollRoot = document.querySelector('[data-scroll-container]');
-    const cursor = document.querySelector('.cursor');
-    const scrollButtons = [...document.querySelectorAll('[data-target]')];
-    const contentSections = [...document.querySelectorAll('[data-scroll-section]')];
-    const navItems = [...document.querySelectorAll('.nav-item')];
-    navItems.forEach((item) => item.addEventListener('click', () => {
-      const id = item.dataset.target;
-      if (id) jumpTo(id);
-    }));
-    const moveUpButton = document.getElementById('moveUpButton');
-    const moveDownButton = document.getElementById('moveDownButton');
+          const scrollRoot = document.querySelector('[data-scroll-container]');
+          const cursor = document.querySelector('.cursor');
+          const scrollButtons = [...document.querySelectorAll('[data-target]')];
+          const contentSections = [...document.querySelectorAll('[data-scroll-section]')];
+          const navItems = [...document.querySelectorAll('.nav-item')];
+          navItems.forEach((item) => item.addEventListener('click', () => {
+            const id = item.dataset.target;
+            if (id) jumpTo(id);
+          }));
+          const moveUpButton = document.getElementById('moveUpButton');
+          const moveDownButton = document.getElementById('moveDownButton');
 
-    const topbar = document.querySelector('.topbar');
-    const pageSections = [...document.querySelectorAll('section[data-scroll-section]')];
-    let currentIndex = 0;
+          const topbar = document.querySelector('.topbar');
+          const pageSections = [...document.querySelectorAll('section[data-scroll-section]')];
+          let currentIndex = 0;
 
-    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+          const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
-    const getSectionTargetTop = (section) => {
-      const rect = section.getBoundingClientRect();
-      const absoluteTop = window.scrollY + rect.top;
-      const centered = absoluteTop - (window.innerHeight - rect.height) / 2;
-      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
-      return clamp(centered, 0, maxScroll);
-    };
+          const getSectionTargetTop = (section) => {
+            const rect = section.getBoundingClientRect();
+            const absoluteTop = window.scrollY + rect.top;
+            const centered = absoluteTop - (window.innerHeight - rect.height) / 2;
+            const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+            return clamp(centered, 0, maxScroll);
+          };
 
-    const scrollToSection = (section, behavior = 'smooth') => {
-      if (!section) return;
-      window.scrollTo({ top: getSectionTargetTop(section), behavior });
-      window.setTimeout(syncChrome, behavior === 'smooth' ? 700 : 0);
-    };
+          const scrollToSection = (section, behavior = 'smooth') => {
+            if (!section) return;
+            window.scrollTo({ top: getSectionTargetTop(section), behavior });
+            window.setTimeout(syncChrome, behavior === 'smooth' ? 700 : 0);
+          };
 
-    const refreshSectionIndex = () => {
-      const viewportCenter = window.scrollY + window.innerHeight / 2;
-      let nearestIndex = 0;
-      let nearestDistance = Infinity;
+          const refreshSectionIndex = () => {
+            const viewportCenter = window.scrollY + window.innerHeight / 2;
+            let nearestIndex = 0;
+            let nearestDistance = Infinity;
 
-      pageSections.forEach((section, index) => {
-        const rect = section.getBoundingClientRect();
-        const sectionCenter = window.scrollY + rect.top + rect.height / 2;
-        const distance = Math.abs(sectionCenter - viewportCenter);
-        if (distance < nearestDistance) {
-          nearestDistance = distance;
-          nearestIndex = index;
-        }
-      });
+            pageSections.forEach((section, index) => {
+              const rect = section.getBoundingClientRect();
+              const sectionCenter = window.scrollY + rect.top + rect.height / 2;
+              const distance = Math.abs(sectionCenter - viewportCenter);
+              if (distance < nearestDistance) {
+                nearestDistance = distance;
+                nearestIndex = index;
+              }
+            });
 
-      currentIndex = nearestIndex;
-    };
+            currentIndex = nearestIndex;
+          };
 
-    const syncMoveButtons = () => {
-      if (moveUpButton) {
-        moveUpButton.hidden = currentIndex <= 0;
-      }
-    };
+          const syncMoveButtons = () => {
+            if (moveUpButton) {
+              moveUpButton.hidden = currentIndex <= 0;
+            }
+          };
 
-    const setActive = (id) => {
-      navItems.forEach((item) => item.classList.toggle('is-active', item.dataset.target === id));
-    };
+          const setActive = (id) => {
+            navItems.forEach((item) => item.classList.toggle('is-active', item.dataset.target === id));
+          };
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          const id = entry.target.id;
-          if (id !== 'hero') {
-            setActive(id);
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                const id = entry.target.id;
+                if (id !== 'hero') {
+                  setActive(id);
+                }
+              }
+            });
+          }, { threshold: 0.22 });
+
+          contentSections.forEach((section) => observer.observe(section));
+
+          setActive('slide1');
+
+          const jumpTo = (id) => {
+            const target = document.getElementById(id);
+            if (!target) return;
+            scrollToSection(target);
+          };
+
+          const moveToIndex = (index) => {
+            const safeIndex = clamp(index, 0, pageSections.length - 1);
+            currentIndex = safeIndex;
+            scrollToSection(pageSections[safeIndex]);
+            syncMoveButtons();
+          };
+
+          scrollButtons.forEach((button) => {
+            button.addEventListener('click', () => jumpTo(button.dataset.target));
+          });
+
+          const heroTween = () => {
+            if (!window.gsap) return;
+            gsap.from('.hero-copy > *', {
+              y: 34,
+              opacity: 0,
+              duration: 0.95,
+              ease: 'power3.out',
+              stagger: 0.09,
+              delay: 0.15
+            });
+            gsap.from('.hero-stage', {
+              y: 50,
+              opacity: 0,
+              duration: 1.05,
+              ease: 'power3.out',
+              delay: 0.25
+            });
+            gsap.from('.topbar', {
+              y: -24,
+              opacity: 0,
+              duration: 0.8,
+              ease: 'power2.out'
+            });
+          };
+
+          heroTween();
+
+          const updatePointer = (event) => {
+            const x = `${event.clientX}px`;
+            const y = `${event.clientY}px`;
+            document.documentElement.style.setProperty('--mx', x);
+            document.documentElement.style.setProperty('--my', y);
+            if (cursor) {
+              cursor.style.transform = `translate3d(${event.clientX - 11}px, ${event.clientY - 11}px, 0)`;
+            }
+          };
+
+          window.addEventListener('mousemove', updatePointer, { passive: true });
+          window.addEventListener('resize', refreshSectionIndex);
+
+          const syncChrome = () => {
+            const hideBar = window.scrollY > 320;
+            topbar.style.transform = hideBar ? 'translateY(-100%)' : 'translateY(0)';
+
+            const viewportCenter = window.scrollY + window.innerHeight / 2;
+            let activeSection = pageSections[0];
+
+            for (const section of pageSections) {
+              const rect = section.getBoundingClientRect();
+              const sectionCenter = window.scrollY + rect.top + rect.height / 2;
+              if (sectionCenter <= viewportCenter + 40) {
+                activeSection = section;
+              }
+            }
+
+            if (activeSection && activeSection.id !== 'hero') {
+              setActive(activeSection.id);
+            }
+            refreshSectionIndex();
+            syncMoveButtons();
+          };
+
+          let scrollTicking = false;
+          window.addEventListener('scroll', () => {
+            if (scrollTicking) return;
+            scrollTicking = true;
+            window.requestAnimationFrame(() => {
+              syncChrome();
+              scrollTicking = false;
+            });
+          }, { passive: true });
+
+          // On load, sync UI and verify images
+          const verifyImages = () => {
+            const imgs = Array.from(document.querySelectorAll('img'));
+            const broken = imgs.filter(i => !(i.naturalWidth > 0 && i.naturalHeight > 0));
+            let statusEl = document.getElementById('image-check-status');
+            if (!statusEl) {
+              statusEl = document.createElement('div');
+              statusEl.id = 'image-check-status';
+              Object.assign(statusEl.style, {
+                position: 'fixed',
+                right: '14px',
+                bottom: '92px',
+                padding: '10px 12px',
+                borderRadius: '12px',
+                background: 'rgba(7,7,11,0.72)',
+                color: 'var(--ink)',
+                fontSize: '0.85rem',
+                zIndex: 60,
+                border: '1px solid rgba(255,255,255,0.06)',
+                backdropFilter: 'blur(8px)'
+              });
+              document.body.appendChild(statusEl);
+            }
+
+            if (broken.length === 0) {
+              statusEl.textContent = `Images OK — ${imgs.length} loaded`;
+              statusEl.style.boxShadow = '0 12px 30px rgba(54,208,195,0.12)';
+            } else {
+              statusEl.textContent = `⚠ ${broken.length} image(s) failed — check captions for file names`;
+              statusEl.style.boxShadow = '0 12px 30px rgba(241,78,63,0.18)';
+            }
+
+            console.group('Image verification');
+            imgs.forEach((img) => console.log(img.src, img.naturalWidth, img.naturalHeight));
+            if (broken.length) console.warn('Broken images:', broken.map(b => b.src));
+            console.groupEnd();
+          };
+
+          window.addEventListener('load', () => {
+            syncChrome();
+            refreshSectionIndex();
+            verifyImages();
+          });
+
+          document.querySelectorAll('img').forEach((img) => {
+            if (img.complete) return;
+            img.addEventListener('load', () => { syncChrome(); verifyImages(); }, { once: true });
+            img.addEventListener('error', () => { syncChrome(); verifyImages(); }, { once: true });
+          });
+
+          window.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowDown' || event.key === 'PageDown') {
+              event.preventDefault();
+              moveToIndex(currentIndex + 1);
+            }
+
+            if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+              event.preventDefault();
+              moveToIndex(currentIndex - 1);
+            }
+          });
+
+          window.addEventListener('wheel', syncChrome, { passive: true });
+
+          moveDownButton.addEventListener('click', () => moveToIndex(currentIndex + 1));
+          moveUpButton.addEventListener('click', () => moveToIndex(currentIndex - 1));
+
+          // Nav panel dragging and collapse
+          const nav = document.querySelector('.nav');
+          const navToggle = document.getElementById('navToggle');
+          let isDragging = false;
+          let offsetX = 0;
+          let offsetY = 0;
+
+          if (nav && navToggle) {
+            nav.addEventListener('mousedown', (e) => {
+              if (e.target === navToggle || navToggle.contains(e.target)) return;
+              isDragging = true;
+              offsetX = e.clientX - nav.getBoundingClientRect().left;
+              offsetY = e.clientY - nav.getBoundingClientRect().top;
+              nav.style.cursor = 'grabbing';
+            });
+
+            window.addEventListener('mousemove', (e) => {
+              if (!isDragging) return;
+              const newLeft = e.clientX - offsetX;
+              const newTop = e.clientY - offsetY;
+              const maxLeft = window.innerWidth - nav.offsetWidth;
+              const maxTop = window.innerHeight - nav.offsetHeight;
+              nav.style.position = 'fixed';
+              nav.style.left = Math.max(0, Math.min(newLeft, maxLeft)) + 'px';
+              nav.style.right = 'auto';
+              nav.style.top = Math.max(0, Math.min(newTop, maxTop)) + 'px';
+            });
+
+            window.addEventListener('mouseup', () => {
+              if (isDragging) {
+                isDragging = false;
+                nav.style.cursor = 'grab';
+              }
+            });
+
+            navToggle.addEventListener('click', (e) => {
+              e.stopPropagation();
+              nav.classList.toggle('is-collapsed');
+            });
           }
-        }
-      });
-    }, { threshold: 0.22 });
 
-    contentSections.forEach((section) => observer.observe(section));
-
-    setActive('slide1');
-
-    const jumpTo = (id) => {
-      const target = document.getElementById(id);
-      if (!target) return;
-      scrollToSection(target);
-    };
-
-    const moveToIndex = (index) => {
-      const safeIndex = clamp(index, 0, pageSections.length - 1);
-      currentIndex = safeIndex;
-      scrollToSection(pageSections[safeIndex]);
-      syncMoveButtons();
-    };
-
-    scrollButtons.forEach((button) => {
-      button.addEventListener('click', () => jumpTo(button.dataset.target));
-    });
-
-    const heroTween = () => {
-      if (!window.gsap) return;
-      gsap.from('.hero-copy > *', {
-        y: 34,
-        opacity: 0,
-        duration: 0.95,
-        ease: 'power3.out',
-        stagger: 0.09,
-        delay: 0.15
-      });
-      gsap.from('.hero-stage', {
-        y: 50,
-        opacity: 0,
-        duration: 1.05,
-        ease: 'power3.out',
-        delay: 0.25
-      });
-      gsap.from('.topbar', {
-        y: -24,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
-    };
-
-    heroTween();
-
-    const updatePointer = (event) => {
-      const x = `${event.clientX}px`;
-      const y = `${event.clientY}px`;
-      document.documentElement.style.setProperty('--mx', x);
-      document.documentElement.style.setProperty('--my', y);
-      if (cursor) {
-        cursor.style.transform = `translate3d(${event.clientX - 11}px, ${event.clientY - 11}px, 0)`;
-      }
-    };
-
-    window.addEventListener('mousemove', updatePointer, { passive: true });
-    window.addEventListener('resize', refreshSectionIndex);
-
-    const syncChrome = () => {
-      const hideBar = window.scrollY > 320;
-      topbar.style.transform = hideBar ? 'translateY(-100%)' : 'translateY(0)';
-
-      const viewportCenter = window.scrollY + window.innerHeight / 2;
-      let activeSection = pageSections[0];
-
-      for (const section of pageSections) {
-        const rect = section.getBoundingClientRect();
-        const sectionCenter = window.scrollY + rect.top + rect.height / 2;
-        if (sectionCenter <= viewportCenter + 40) {
-          activeSection = section;
-        }
-      }
-
-      if (activeSection && activeSection.id !== 'hero') {
-        setActive(activeSection.id);
-      }
-      refreshSectionIndex();
-      syncMoveButtons();
-    };
-
-    let scrollTicking = false;
-    window.addEventListener('scroll', () => {
-      if (scrollTicking) return;
-      scrollTicking = true;
-      window.requestAnimationFrame(() => {
-        syncChrome();
-        scrollTicking = false;
-      });
-    }, { passive: true });
-
-    // On load, sync UI and verify images
-    const verifyImages = () => {
-      const imgs = Array.from(document.querySelectorAll('img'));
-      const broken = imgs.filter(i => !(i.naturalWidth > 0 && i.naturalHeight > 0));
-      let statusEl = document.getElementById('image-check-status');
-      if (!statusEl) {
-        statusEl = document.createElement('div');
-        statusEl.id = 'image-check-status';
-        Object.assign(statusEl.style, {
-          position: 'fixed',
-          right: '14px',
-          bottom: '92px',
-          padding: '10px 12px',
-          borderRadius: '12px',
-          background: 'rgba(7,7,11,0.72)',
-          color: 'var(--ink)',
-          fontSize: '0.85rem',
-          zIndex: 60,
-          border: '1px solid rgba(255,255,255,0.06)',
-          backdropFilter: 'blur(8px)'
-        });
-        document.body.appendChild(statusEl);
-      }
-
-      if (broken.length === 0) {
-        statusEl.textContent = `Images OK — ${imgs.length} loaded`;
-        statusEl.style.boxShadow = '0 12px 30px rgba(54,208,195,0.12)';
-      } else {
-        statusEl.textContent = `⚠ ${broken.length} image(s) failed — check captions for file names`;
-        statusEl.style.boxShadow = '0 12px 30px rgba(241,78,63,0.18)';
-      }
-
-      console.group('Image verification');
-      imgs.forEach((img) => console.log(img.src, img.naturalWidth, img.naturalHeight));
-      if (broken.length) console.warn('Broken images:', broken.map(b => b.src));
-      console.groupEnd();
-    };
-
-    window.addEventListener('load', () => {
-      syncChrome();
-      refreshSectionIndex();
-      verifyImages();
-    });
-
-    document.querySelectorAll('img').forEach((img) => {
-      if (img.complete) return;
-      img.addEventListener('load', () => { syncChrome(); verifyImages(); }, { once: true });
-      img.addEventListener('error', () => { syncChrome(); verifyImages(); }, { once: true });
-    });
-
-    window.addEventListener('keydown', (event) => {
-      if (event.key === 'ArrowDown' || event.key === 'PageDown') {
-        event.preventDefault();
-        moveToIndex(currentIndex + 1);
-      }
-
-      if (event.key === 'ArrowUp' || event.key === 'PageUp') {
-        event.preventDefault();
-        moveToIndex(currentIndex - 1);
-      }
-    });
-
-    window.addEventListener('wheel', syncChrome, { passive: true });
-
-    moveDownButton.addEventListener('click', () => moveToIndex(currentIndex + 1));
-    moveUpButton.addEventListener('click', () => moveToIndex(currentIndex - 1));
-
-    // Nav panel dragging and collapse
-    const nav = document.querySelector('.nav');
-    const navToggle = document.getElementById('navToggle');
-    let isDragging = false;
-    let offsetX = 0;
-    let offsetY = 0;
-
-    nav.addEventListener('mousedown', (e) => {
-      if (e.target === navToggle || navToggle.contains(e.target)) return;
-      isDragging = true;
-      offsetX = e.clientX - nav.getBoundingClientRect().left;
-      offsetY = e.clientY - nav.getBoundingClientRect().top;
-      nav.style.cursor = 'grabbing';
-    });
-
-    window.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      const newLeft = e.clientX - offsetX;
-      const newTop = e.clientY - offsetY;
-      const maxLeft = window.innerWidth - nav.offsetWidth;
-      const maxTop = window.innerHeight - nav.offsetHeight;
-      nav.style.position = 'fixed';
-      nav.style.left = Math.max(0, Math.min(newLeft, maxLeft)) + 'px';
-      nav.style.right = 'auto';
-      nav.style.top = Math.max(0, Math.min(newTop, maxTop)) + 'px';
-    });
-
-    window.addEventListener('mouseup', () => {
-      if (isDragging) {
-        isDragging = false;
-        nav.style.cursor = 'grab';
-      }
-    });
-
-    navToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      nav.classList.toggle('is-collapsed');
-    });
-
-    syncChrome();
-  </script>
+          syncChrome();
+        </script>
 </body>
 
 </html>
