@@ -1,0 +1,1643 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zia's Pakistan | Scrollytelling Presentation</title>
+  <meta name="description"
+    content="A high-impact web presentation on Zia's Pakistan, built as a cinematic scroll experience." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    :root {
+      --bg: #07070b;
+      --bg-soft: #0f1018;
+      --panel: rgba(255, 246, 232, 0.08);
+      --panel-strong: rgba(255, 246, 232, 0.12);
+      --paper: #f4ead7;
+      --paper-2: #e8dac2;
+      --ink: #f8f2e8;
+      --muted: rgba(248, 242, 232, 0.72);
+      --line: rgba(248, 242, 232, 0.16);
+      --accent: #f14e3f;
+      --accent-2: #36d0c3;
+      --accent-3: #f0b846;
+      --shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      --radius: 28px;
+      --mx: 50vw;
+      --my: 20vh;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: auto;
+      background: var(--bg);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at var(--mx) var(--my), rgba(54, 208, 195, 0.18), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(241, 78, 63, 0.18), transparent 20%),
+        radial-gradient(circle at 15% 30%, rgba(240, 184, 70, 0.16), transparent 24%),
+        linear-gradient(180deg, #09090e 0%, #090910 45%, #07070b 100%);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      overflow-x: hidden;
+      letter-spacing: 0.01em;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+      background-size: 42px 42px;
+      -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 85%);
+      mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 85%);
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .cursor {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      background: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 0 30px rgba(54, 208, 195, 0.35);
+      transform: translate3d(-100px, -100px, 0);
+      pointer-events: none;
+      z-index: 30;
+      mix-blend-mode: screen;
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 999px;
+      filter: blur(30px);
+      opacity: 0.75;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb.one {
+      width: 26rem;
+      height: 26rem;
+      left: -8rem;
+      top: 6rem;
+      background: radial-gradient(circle, rgba(241, 78, 63, 0.26), rgba(241, 78, 63, 0));
+    }
+
+    .orb.two {
+      width: 22rem;
+      height: 22rem;
+      right: -5rem;
+      top: 22vh;
+      background: radial-gradient(circle, rgba(54, 208, 195, 0.22), rgba(54, 208, 195, 0));
+    }
+
+    .orb.three {
+      width: 18rem;
+      height: 18rem;
+      left: 40%;
+      bottom: -6rem;
+      background: radial-gradient(circle, rgba(240, 184, 70, 0.22), rgba(240, 184, 70, 0));
+    }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+    }
+
+    [data-scroll-container] {
+      min-height: 100vh;
+    }
+
+    .topbar {
+      position: fixed;
+      inset: 0 0 auto 0;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 0 22px;
+      background: linear-gradient(180deg, rgba(7, 7, 11, 0.88), rgba(7, 7, 11, 0.3));
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      z-index: 20;
+      transition: transform 220ms ease;
+      will-change: transform;
+    }
+
+    .topbar.is-hidden {
+      transform: translateY(-100%);
+    }
+
+    .jump-controls {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+      display: flex;
+      gap: 10px;
+      z-index: 18;
+    }
+
+    .jump-button {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(9, 9, 14, 0.72);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: var(--shadow);
+      transition: transform 180ms ease, opacity 180ms ease, border-color 180ms ease;
+    }
+
+    .jump-button:hover {
+      transform: translateY(-3px);
+      border-color: rgba(54, 208, 195, 0.34);
+    }
+
+    .jump-button[hidden] {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+    }
+
+    .jump-button svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .sigil {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background:
+        linear-gradient(145deg, rgba(54, 208, 195, 0.9), rgba(241, 78, 63, 0.88)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.2), transparent);
+      box-shadow: 0 12px 30px rgba(54, 208, 195, 0.35);
+      position: relative;
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+
+    .sigil::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      border-radius: 12px;
+      transform: rotate(12deg);
+    }
+
+    .brand-copy {
+      min-width: 0;
+    }
+
+    .brand-copy strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .brand-copy span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.8rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .nav {
+      position: fixed;
+      right: 20px;
+      top: 94px;
+      width: min(220px, calc(100vw - 40px));
+      padding: 14px;
+      border-radius: 22px;
+      background: rgba(9, 9, 14, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+      z-index: 16;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: grab;
+      transition: width 220ms ease, padding 220ms ease, border-radius 220ms ease;
+    }
+
+    .nav.is-collapsed {
+      width: 60px;
+      height: 60px;
+      padding: 0;
+      border-radius: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(9, 9, 14, 0.85);
+      border: 1px solid rgba(54, 208, 195, 0.2);
+    }
+
+    .nav-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: rgba(248, 242, 232, 0.5);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav.is-collapsed .nav-label span {
+      display: none;
+    }
+
+    .nav.is-collapsed .nav-label {
+      margin-bottom: 0;
+    }
+
+    .nav-toggle {
+      width: 24px;
+      height: 24px;
+      border: none;
+      background: none;
+      color: rgba(248, 242, 232, 0.5);
+      cursor: pointer;
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 180ms ease, transform 180ms ease;
+    }
+
+    .nav.is-collapsed .nav-toggle {
+      width: 32px;
+      height: 32px;
+      color: var(--accent-2);
+    }
+
+    .nav-toggle:hover {
+      color: var(--accent-2);
+      transform: scale(1.08);
+    }
+
+    .nav.is-collapsed .nav-list {
+      display: none;
+    }
+
+    .nav-list {
+      display: grid;
+      gap: 8px;
+    }
+
+    .nav-item {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 10px;
+      align-items: center;
+      width: 100%;
+      border: 1px solid transparent;
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--ink);
+      border-radius: 16px;
+      padding: 10px 12px;
+      cursor: pointer;
+      text-align: left;
+      transition: 180ms ease;
+    }
+
+    .nav-item:hover,
+    .nav-item.is-active {
+      border-color: rgba(54, 208, 195, 0.32);
+      background: rgba(54, 208, 195, 0.12);
+      transform: translateX(-4px);
+    }
+
+    .nav-item b {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      line-height: 1;
+      display: block;
+    }
+
+    .nav-item span {
+      display: block;
+      color: rgba(248, 242, 232, 0.58);
+      font-size: 0.72rem;
+      line-height: 1.2;
+    }
+
+    .nav-num {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(241, 78, 63, 0.75), rgba(240, 184, 70, 0.75));
+      font-family: 'Space Grotesk', sans-serif;
+      color: #120f11;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    main {
+      position: relative;
+      padding-top: 88px;
+    }
+
+    .hero,
+    .chapter,
+    .outro {
+      position: relative;
+      min-height: 100vh;
+      padding: 48px clamp(20px, 3vw, 48px) 48px;
+      display: grid;
+      align-items: center;
+    }
+
+    .hero {
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+    }
+
+    .hero-copy {
+      max-width: 820px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 18px;
+      padding: 9px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(248, 242, 232, 0.7);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(3.2rem, 10vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      overflow-wrap: anywhere;
+      text-transform: uppercase;
+    }
+
+    .hero h1 .accent {
+      display: block;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(248, 242, 232, 0.88);
+      text-shadow: 0 0 36px rgba(54, 208, 195, 0.18);
+    }
+
+    .hero p {
+      margin: 22px 0 0;
+      max-width: 70ch;
+      color: var(--muted);
+      font-size: clamp(1rem, 1.3vw, 1.15rem);
+      line-height: 1.75;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--ink);
+      cursor: pointer;
+      transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      border-color: rgba(54, 208, 195, 0.35);
+      background: rgba(54, 208, 195, 0.12);
+    }
+
+    .button.primary {
+      background: linear-gradient(145deg, rgba(241, 78, 63, 0.95), rgba(240, 184, 70, 0.92));
+      color: #150f10;
+      font-weight: 800;
+      box-shadow: 0 18px 40px rgba(241, 78, 63, 0.25);
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .stat {
+      padding: 16px 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.4rem, 2vw, 2rem);
+      line-height: 1;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 8px;
+      color: rgba(248, 242, 232, 0.68);
+      font-size: 0.82rem;
+      line-height: 1.35;
+    }
+
+    .hero-stage {
+      position: relative;
+      min-height: 76vh;
+      display: grid;
+      align-items: end;
+      padding: 18px;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(54, 208, 195, 0.18), transparent 28%),
+        radial-gradient(circle at 90% 0%, rgba(241, 78, 63, 0.22), transparent 22%),
+        linear-gradient(160deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.14), transparent 15%),
+        radial-gradient(circle at 60% 70%, rgba(255, 255, 255, 0.08), transparent 18%);
+      mix-blend-mode: screen;
+      opacity: 0.75;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 18px;
+      border-radius: 26px;
+      overflow: hidden;
+      background: #1c1a22;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: saturate(1.05) contrast(1.08);
+      transform: scale(1.04);
+    }
+
+    .hero-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 7, 11, 0.05) 0%, rgba(7, 7, 11, 0.65) 100%);
+    }
+
+    .hero-badges {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 12px;
+      align-self: end;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(7, 7, 11, 0.48);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+    }
+
+    .badge-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: rgba(248, 242, 232, 0.82);
+    }
+
+    .scroll-cue {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      z-index: 2;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(9, 9, 14, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(248, 242, 232, 0.76);
+      font-size: 0.74rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .chapter {
+      grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+      gap: 26px;
+      align-items: center;
+      opacity: 0.1;
+      transform: translateY(34px) scale(0.985);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .chapter.visible,
+    .outro.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .chapter-copy,
+    .outro-copy {
+      position: relative;
+      padding: 22px;
+      border-radius: 30px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.04));
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .chapter-copy::before,
+    .outro-copy::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(circle at 0% 0%, color-mix(in srgb, var(--accent) 26%, transparent), transparent 24%), radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent-2) 20%, transparent), transparent 26%);
+      opacity: 0.95;
+      pointer-events: none;
+      mask: linear-gradient(180deg, rgba(0, 0, 0, 0.7), transparent 85%);
+    }
+
+    .chapter-copy>*,
+    .outro-copy>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    .chapter-index {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: rgba(248, 242, 232, 0.18);
+      z-index: 2;
+    }
+
+    .chapter h2,
+    .outro h2 {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 4rem);
+      line-height: 0.96;
+      letter-spacing: -0.05em;
+      overflow-wrap: anywhere;
+      text-transform: uppercase;
+    }
+
+    .lede {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 68ch;
+    }
+
+    .detail-quote {
+      margin: 18px 0 0;
+      padding: 18px 18px 18px 20px;
+      border-left: 3px solid var(--accent-2);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(248, 242, 232, 0.9);
+      line-height: 1.75;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(248, 242, 232, 0.88);
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    .bullet-grid {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .bullet-grid li {
+      padding: 14px 14px 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(248, 242, 232, 0.82);
+      line-height: 1.55;
+      font-size: 0.92rem;
+    }
+
+    .chapter-media {
+      position: relative;
+      margin: 0;
+      align-self: stretch;
+      min-height: 520px;
+      border-radius: 34px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .chapter-media::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(7, 7, 11, 0.1) 0%, rgba(7, 7, 11, 0.8) 100%),
+        radial-gradient(circle at 20% 15%, color-mix(in srgb, var(--accent) 25%, transparent), transparent 30%),
+        radial-gradient(circle at 80% 10%, color-mix(in srgb, var(--accent-2) 18%, transparent), transparent 26%);
+      z-index: 1;
+    }
+
+    .chapter-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+      object-position: center;
+      filter: saturate(1.08) contrast(1.05);
+      transform: scale(1.01);
+    }
+
+    .chapter-media figcaption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 2;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(7, 7, 11, 0.58);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: rgba(248, 242, 232, 0.78);
+      line-height: 1.5;
+      font-size: 0.88rem;
+      -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
+    }
+
+    .source-line {
+      display: inline-flex;
+      margin-top: 16px;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(248, 242, 232, 0.48);
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .timeline-row {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .timeline-row strong {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      line-height: 1;
+      color: var(--accent-3);
+    }
+
+    .timeline-row span {
+      color: rgba(248, 242, 232, 0.8);
+      line-height: 1.5;
+      font-size: 0.93rem;
+    }
+
+    .matrix {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .matrix-card {
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .matrix-card b {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .matrix-card p {
+      margin: 0;
+      color: rgba(248, 242, 232, 0.76);
+      line-height: 1.6;
+      font-size: 0.9rem;
+    }
+
+    .outro {
+      grid-template-columns: 1fr;
+      min-height: 0;
+      padding-bottom: 90px;
+      opacity: 0.1;
+      transform: translateY(34px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .outro-copy {
+      max-width: 1120px;
+    }
+
+    .credits {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: rgba(248, 242, 232, 0.6);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .credits span {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .footer-note {
+      margin-top: 14px;
+      color: rgba(248, 242, 232, 0.56);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1200px) {
+      .nav {
+        position: fixed;
+        right: 12px;
+        left: auto;
+        width: 210px;
+      }
+
+      .hero,
+      .chapter {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stage,
+      .chapter-media {
+        min-height: 440px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .topbar {
+        height: auto;
+        padding: 14px 16px;
+        align-items: flex-start;
+      }
+
+      .topbar-meta {
+        display: none;
+      }
+
+      .nav {
+        position: static;
+        width: calc(100vw - 32px);
+        margin: 16px auto 0;
+      }
+
+      main {
+        padding-top: 118px;
+      }
+
+      .hero,
+      .chapter,
+      .outro {
+        padding-inline: 16px;
+      }
+
+      .hero-stats,
+      .matrix,
+      .bullet-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter-media img,
+      .chapter-media,
+      .hero-stage {
+        min-height: 360px;
+      }
+
+      .cursor {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="orb one" aria-hidden="true"></div>
+  <div class="orb two" aria-hidden="true"></div>
+  <div class="orb three" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="sigil"></div>
+      <div class="brand-copy">
+        <strong>Zia's Pakistan</strong>
+        <span>Politics, Islamization, frontier pressure, and regime survival</span>
+      </div>
+    </div>
+  </header>
+
+  <aside class="nav" aria-label="Presentation navigation">
+    <div class="nav-label">
+      <span>Jump to section</span>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle section panel">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+          <path d="M5 13h14v-2H5v2zm0 4h14v-2H5v2zm0-8h14V7H5v2z" />
+        </svg>
+      </button>
+    </div>
+    <div class="nav-list" id="navList"></div>
+  </aside>
+
+  <div class="jump-controls" aria-label="Section controls">
+    <button class="jump-button" id="moveUpButton" aria-label="Move to previous section" hidden>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 6l-7 7 1.4 1.4L11 9.8V18h2V9.8l4.6 4.6L19 13z" />
+      </svg>
+    </button>
+    <button class="jump-button" id="moveDownButton" aria-label="Move to next section">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12 18l7-7-1.4-1.4L13 14.2V6h-2v8.2l-4.6-4.6L5 11z" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="shell" data-scroll-container>
+    <main>
+      <section class="hero" id="hero" data-scroll-section>
+        <div class="hero-copy">
+          <div class="eyebrow">Book discussion presentation</div>
+          <h1>
+            Zia's
+            <span class="accent">Pakistan</span>
+          </h1>
+          <p>
+            A cinematic scrollytelling deck on how General Muhammad Zia-ul-Haq held power in a volatile frontline state:
+            through Islamization, military cooptation, Afghan war pressure, selective economic luck, and a political
+            system
+            built to survive without real democratic legitimacy.
+          </p>
+          <div class="hero-actions">
+            <button class="button primary" data-jump="about">Start the story</button>
+            <button class="button" data-jump="conclusion">Jump to synthesis</button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>1977-1988</strong>
+              <span>Zia's rule spans coup, martial law, and the slow return to partyless elections.</span>
+            </div>
+            <div class="stat">
+              <strong>3M+</strong>
+              <span>Afghan refugees in Pakistan by the mid-1980s, turning the border into a pressure cooker.</span>
+            </div>
+            <div class="stat">
+              <strong>6%</strong>
+              <span>Annual growth that softened resistance and made the regime look functional.</span>
+            </div>
+            <div class="stat">
+              <strong>1985</strong>
+              <span>Partyless elections and the Eighth Amendment recast the political settlement.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-stage">
+          <div class="hero-image">
+            <img src="https://en.wikipedia.org/wiki/Special:FilePath/General_Muhammad_Zia-Ul-Haq.jpg"
+              alt="Portrait of General Muhammad Zia-ul-Haq" />
+          </div>
+          <div class="hero-badges">
+            <div class="badge-grid">
+              <span class="badge">Frontline state</span>
+              <span class="badge">Islamization</span>
+              <span class="badge">Military power</span>
+              <span class="badge">Afghan war</span>
+              <span class="badge">Economic luck</span>
+            </div>
+            <div class="timeline-row">
+              <strong>Core thesis</strong>
+              <span>Zia survived because he managed overlapping interest groups better than anyone expected.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter visible" id="about" data-scroll-section data-accent="#f14e3f" data-accent-2="#36d0c3">
+        <div class="chapter-copy">
+          <div class="chapter-index">01</div>
+          <div class="eyebrow">Book and editor</div>
+          <h2>The book treats Zia as a coalition builder, not just a dictator.</h2>
+          <p class="lede">
+            Craig Baxter's 1985 volume frames Zia's regime through interest groups: military officers, clerics, urban
+            elites,
+            rural notables, Afghan refugees, and the broader economy. The point is not personality alone, but the way
+            power
+            was assembled and maintained.
+          </p>
+          <div class="detail-quote">The presentation is built around that same structure: each section shows how a
+            pressure point, a patron, or a policy choice kept the regime standing.</div>
+          <div class="pill-row">
+            <span class="pill">Westview Press, 1985</span>
+            <span class="pill">Edited by Craig Baxter</span>
+            <span class="pill">Interest group model</span>
+            <span class="pill">Multi-author analysis</span>
+          </div>
+          <ul class="bullet-grid">
+            <li>Focus on urban groups, rural structure, economy, military, refugees, and legitimacy.</li>
+            <li>The regime is read as a system of bargains, not a single-line ideology.</li>
+            <li>Power flows through technocrats, clerics, generals, and notables.</li>
+            <li>The story is about survival under stress, not clean democratic transition.</li>
+          </ul>
+          <span class="source-line">Image source: Wikimedia Commons</span>
+        </div>
+        <figure class="chapter-media">
+          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Z_A_Bhutto_(President_of_Pakistan).jpg"
+            alt="Zulfikar Ali Bhutto portrait" />
+          <figcaption>Bhutto's shadow matters throughout the deck: Zia rises by replacing, neutralizing, and outlasting
+            the political order Bhutto represented.</figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter" id="context" data-scroll-section data-accent="#36d0c3" data-accent-2="#f0b846">
+        <div class="chapter-copy">
+          <div class="chapter-index">02</div>
+          <div class="eyebrow">Historical context</div>
+          <h2>1977 was the rupture that made the rest of the regime possible.</h2>
+          <p class="lede">
+            Bhutto's disputed election, the PNA agitation, the 5 July coup, the suspension of politics, and then the
+            Soviet
+            invasion of Afghanistan created the environment Zia needed. What begins as crisis management quickly becomes
+            a
+            long-term authoritarian arrangement.
+          </p>
+          <div class="timeline">
+            <div class="timeline-row"><strong>1977</strong><span>Election crisis, street protests, and the Operation
+                Fair Play coup.</span></div>
+            <div class="timeline-row"><strong>1978</strong><span>Zia consolidates the presidency and extends martial
+                rule.</span></div>
+            <div class="timeline-row"><strong>1979</strong><span>Bhutto is executed; the Soviet invasion turns Pakistan
+                into a frontline state.</span></div>
+            <div class="timeline-row"><strong>1985</strong><span>Partyless elections provide a controlled return to
+                civilian institutions.</span></div>
+          </div>
+          <span class="source-line">Image source: Wikimedia Commons</span>
+        </div>
+        <figure class="chapter-media">
+          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Pakistan_General_eleciton_1977_map.png"
+            alt="1977 election map" />
+          <figcaption>The 1977 election crisis and its regional intensity are the opening fracture lines in the
+            presentation.</figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter" id="agenda" data-scroll-section data-accent="#f0b846" data-accent-2="#f14e3f">
+        <div class="chapter-copy">
+          <div class="chapter-index">03</div>
+          <div class="eyebrow">Transformation agenda</div>
+          <h2>Islamization, controlled politics, and foreign policy shift formed the regime's spine.</h2>
+          <p class="lede">
+            Zia's signature move was not only repression. It was rebranding the state: Nizam-i-Mustafa, shariah benches,
+            zakat, Hudood ordinances, party bans, local bodies, and a foreign policy that leaned hard into the
+            anti-Soviet
+            front. Ideology and pragmatism were fused into one machine.
+          </p>
+          <div class="matrix">
+            <div class="matrix-card"><b>Islamization</b>
+              <p>Shariah courts, zakat, Islamic banking, and the claim that state power was being made morally
+                legitimate.</p>
+            </div>
+            <div class="matrix-card"><b>Control</b>
+              <p>Party bans, Majlis-e-Shura, local bodies, and partyless elections that kept opposition fragmented.</p>
+            </div>
+            <div class="matrix-card"><b>Foreign policy</b>
+              <p>Pakistan becomes indispensable in the Afghan war and earns massive aid and strategic cover.</p>
+            </div>
+          </div>
+          <span class="source-line">Image source: Wikimedia Commons</span>
+        </div>
+        <figure class="chapter-media">
+          <img
+            src="https://en.wikipedia.org/wiki/Special:FilePath/President_Ronald_Reagan_and_Bill_Clark_meeting_with_President_Mohammad_Zia_Ul_Haq.jpg"
+            alt="Ronald Reagan and Bill Clark meeting with Zia-ul-Haq" />
+          <figcaption>Washington-backed strategic alignment made Zia's regime more durable while the Soviet-Afghan war
+            reshaped Pakistan's priorities.</figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter" id="economy" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
+        <div class="chapter-copy">
+          <div class="chapter-index">04</div>
+          <div class="eyebrow">Economy and social base</div>
+          <h2>Growth and remittances bought time.</h2>
+          <p class="lede">
+            The deck's economic argument is blunt: average growth near 6 percent, large Gulf remittances, and a broad
+            enough distribution of gains gave the regime breathing room. It was not an economic miracle, but it was
+            enough to
+            keep major constituencies from exploding at once.
+          </p>
+          <ul class="bullet-grid">
+            <li>Remittances from migrant workers stabilized households and softened labor unrest.</li>
+            <li>Urban elites benefited from denationalization and freer circulation of goods.</li>
+            <li>Rural notables stayed inside the system through subsidies and local bodies.</li>
+            <li>Low domestic savings and infrastructure deficits remained structural weaknesses.</li>
+          </ul>
+          <div class="detail-quote">Economic luck did not erase political problems, but it made discontent easier to
+            postpone.</div>
+          <span class="source-line">Image source: Wikimedia Commons</span>
+        </div>
+        <figure class="chapter-media">
+          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Afghan_refugees_returning_from_Pakistan_in_2004.jpg"
+            alt="Afghan refugees returning from Pakistan" />
+          <figcaption>The refugee and labor story sits inside a wider migration economy that changed Pakistan's social
+            balance during the 1980s.</figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter" id="security" data-scroll-section data-accent="#f14e3f" data-accent-2="#f0b846">
+        <div class="chapter-copy">
+          <div class="chapter-index">05</div>
+          <div class="eyebrow">Military and security</div>
+          <h2>The army became both the guardrail and the beneficiary.</h2>
+          <p class="lede">
+            Under Zia, military expansion reached deep into civilian administration. Officers filled government posts,
+            defense
+            spending rose, military-linked business grew, and new recruits came from more conservative middle-class
+            backgrounds.
+            At the same time, the Soviet border threat made military rule easier to justify.
+          </p>
+          <div class="timeline">
+            <div class="timeline-row"><strong>Army</strong><span>More personnel, more influence, more overlap with civil
+                administration.</span></div>
+            <div class="timeline-row"><strong>Frontline state</strong><span>Afghanistan turned internal politics into a
+                security story.</span></div>
+            <div class="timeline-row"><strong>Nuclear track</strong><span>Strategic competition with India continued
+                under military control.</span></div>
+          </div>
+          <span class="source-line">Image source: Wikimedia Commons</span>
+        </div>
+        <figure class="chapter-media">
+          <img src="https://en.wikipedia.org/wiki/Special:FilePath/Zia_ul_Haq_Tomb.jpg"
+            alt="Zia ul Haq tomb in Islamabad" />
+          <figcaption>Zia's legacy is still spatially present in Islamabad, where the state he shaped remains impossible
+            to separate from his rule.</figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter" id="refugees" data-scroll-section data-accent="#f0b846" data-accent-2="#36d0c3">
+        <div class="chapter-copy">
+          <div class="chapter-index">06</div>
+          <div class="eyebrow">Afghan refugees</div>
+          <h2>The refugee crisis was both burden and leverage.</h2>
+          <p class="lede">
+            The Soviet invasion produced millions of Afghan refugees, with Pakistan absorbing enormous pressure in
+            Khyber
+            Pakhtunkhwa and Balochistan. The regime used this to reinforce its frontline-state identity, justify martial
+            law,
+            and unlock aid, even as local labor and services came under strain.
+          </p>
+          <ul class="bullet-grid">
+            <li>Refugees concentrated in border provinces and around Peshawar.</li>
+            <li>International aid offset some fiscal stress and strengthened Zia's position.</li>
+            <li>Drug and arms smuggling expanded along the conflict corridor.</li>
+            <li>Spillover risk made security politics more central than democratic reform.</li>
+          </ul>
+          <span class="source-line">Image source: Wikimedia Commons</span>
+        </div>
+        <figure class="chapter-media">
+          <img
+            src="https://en.wikipedia.org/wiki/Special:FilePath/Refugees_from_Afghanistan_in_Pakistan%2C_near_Islamabad.jpg"
+            alt="Afghan children near Islamabad" />
+          <figcaption>Afghan displacement changed the political economy of the borderlands and became part of the
+            regime's legitimacy story.</figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter" id="coalition" data-scroll-section data-accent="#36d0c3" data-accent-2="#f14e3f">
+        <div class="chapter-copy">
+          <div class="chapter-index">07</div>
+          <div class="eyebrow">Coalition building</div>
+          <h2>Zia survived by rewarding allies and preventing a unified opposition.</h2>
+          <p class="lede">
+            Baxter's conclusion is that Zia was effective at assembling a layered coalition: clerics got influence,
+            officers
+            got posts and benefits, rural notables got local bodies, and urban elites got economic pragmatism.
+            Repression
+            existed, but it was calibrated to avoid creating one giant anti-regime bloc.
+          </p>
+          <div class="matrix">
+            <div class="matrix-card"><b>Clerics</b>
+              <p>Islamization gave ideological legitimacy and positions inside the state.</p>
+            </div>
+            <div class="matrix-card"><b>Military</b>
+              <p>Benefits, promotions, and civil slots made the army invested in continuity.</p>
+            </div>
+            <div class="matrix-card"><b>Elites</b>
+              <p>Landlords and industrialists were brought back in through denationalization and access.</p>
+            </div>
+          </div>
+          <span class="source-line">Image source: Wikimedia Commons</span>
+        </div>
+        <figure class="chapter-media">
+          <img src="https://en.wikipedia.org/wiki/Special:FilePath/General_Muhammad_Zia-Ul-Haq.jpg"
+            alt="Portrait of General Muhammad Zia-ul-Haq" />
+          <figcaption>One man sat at the center of several bargains, but the bargains themselves were the real structure
+            of survival.</figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter" id="legitimacy" data-scroll-section data-accent="#f14e3f" data-accent-2="#36d0c3">
+        <div class="chapter-copy">
+          <div class="chapter-index">08</div>
+          <div class="eyebrow">Legitimacy</div>
+          <h2>Accepted, but never fully legitimized.</h2>
+          <p class="lede">
+            The legitimacy story is split. Zia had economic performance, religious messaging, and security fears on his
+            side.
+            Yet he never won a free national election, and major professional and political groups remained alienated.
+            The
+            regime was tolerated more than embraced.
+          </p>
+          <ul class="bullet-grid">
+            <li>1984 referendum and 1985 elections gave procedural cover, not full democratic consent.</li>
+            <li>Lawyers, journalists, and many urban professionals stayed oppositional.</li>
+            <li>Sindh remained especially hostile because of Bhutto's execution.</li>
+            <li>The state looked stable, but stability relied on managed contradiction.</li>
+          </ul>
+          <div class="detail-quote">Circumstances were kind to Zia, but kindness is not the same thing as legitimacy.
+          </div>
+          <span class="source-line">Image source: Wikimedia Commons</span>
+        </div>
+        <figure class="chapter-media">
+          <img
+            src="https://en.wikipedia.org/wiki/Special:FilePath/President_Ronald_Reagan_and_Bill_Clark_meeting_with_President_Mohammad_Zia_Ul_Haq.jpg"
+            alt="Zia with Reagan and Bill Clark" />
+          <figcaption>External support amplified the regime's image of strategic necessity while leaving its democratic
+            deficit untouched.</figcaption>
+        </figure>
+      </section>
+
+      <section class="chapter" id="future" data-scroll-section data-accent="#f0b846" data-accent-2="#f14e3f">
+        <div class="chapter-copy">
+          <div class="chapter-index">09</div>
+          <div class="eyebrow">Future outlook</div>
+          <h2>The authors warn that the model could break if growth, aid, or coalition discipline collapsed.</h2>
+          <p class="lede">
+            The outlook section matters because it shows the regime's vulnerabilities clearly: declining remittances,
+            rural
+            unrest, Sindhi alienation, Baluch grievances, and regional security shocks. Zia's system could work only
+            while the
+            balance of pressure stayed manageable.
+          </p>
+          <div class="timeline-row"><strong>Risk</strong><span>If growth falters and distribution stops feeling broad
+              enough, the coalition can unravel quickly.</span></div>
+          <div class="timeline-row"><strong>Scenario</strong><span>Controlled transition was possible, but only if the
+              military kept the veto and the opposition stayed fragmented.</span></div>
+          <div class="timeline-row"><strong>Core warning</strong><span>A frontier state can look strong while resting on
+              very fragile assumptions.</span></div>
+          <span class="source-line">Image source: Wikimedia Commons</span>
+        </div>
+        <figure class="chapter-media">
+          <img src="https://en.wikipedia.org/wiki/Special:FilePath/President_Mohammad_Zia_Ul_Haq.jpg"
+            alt="General Muhammad Zia-ul-Haq" />
+          <figcaption>The end of the deck moves from survival mechanics to the question of what kind of state survives
+            after a ruler like Zia.</figcaption>
+        </figure>
+      </section>
+
+      <section class="outro" id="conclusion" data-scroll-section>
+        <div class="outro-copy">
+          <div class="eyebrow">Closing synthesis</div>
+          <h2>Baxter's verdict is simple: Zia survived because he managed the system better than his rivals managed
+            opposition.</h2>
+          <p class="lede">
+            The regime endured not through charisma, but through circumstance, coalition discipline, military power,
+            religious
+            legitimacy, and economic luck. It was accepted more than loved, stabilized more than democratized, and
+            preserved by
+            a world that treated Pakistan as strategically too important to fail.
+          </p>
+          <div class="pill-row">
+            <span class="pill">Circumstances over charisma</span>
+            <span class="pill">Coalition imperative</span>
+            <span class="pill">Economy as stabilizer</span>
+            <span class="pill">Contested legitimacy</span>
+            <span class="pill">Frontier state paradox</span>
+          </div>
+          <div class="credits">
+            <span>Images: Wikimedia Commons</span>
+            <span>Presentation: HTML, GSAP, Locomotive Scroll</span>
+            <span>Reference deck: Zia's Pakistan</span>
+          </div>
+          <div class="footer-note">
+            Thank You for linstening. Any questions, comments, or suggestions are very welcome.
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const sections = [
+      { id: 'about', label: 'About', note: 'book and editor' },
+      { id: 'context', label: 'Context', note: 'coup and crisis' },
+      { id: 'agenda', label: 'Agenda', note: 'Islamization and control' },
+      { id: 'economy', label: 'Economy', note: 'growth and remittances' },
+      { id: 'security', label: 'Security', note: 'army and frontier state' },
+      { id: 'refugees', label: 'Refugees', note: 'Afghan spillover' },
+      { id: 'coalition', label: 'Coalition', note: 'cooptation strategy' },
+      { id: 'legitimacy', label: 'Legitimacy', note: 'accepted, not endorsed' },
+      { id: 'future', label: 'Future', note: 'what could break it' },
+      { id: 'conclusion', label: 'Close', note: 'Baxter synthesis' }
+    ];
+
+    const navList = document.getElementById('navList');
+    navList.innerHTML = sections.map((section, index) => `
+      <button class="nav-item" data-target="${section.id}" aria-label="Go to ${section.label}">
+        <span class="nav-num">${String(index + 1).padStart(2, '0')}</span>
+        <span>
+          <b>${section.label}</b>
+          <span>${section.note}</span>
+        </span>
+      </button>
+    `).join('');
+
+    const scrollRoot = document.querySelector('[data-scroll-container]');
+    const cursor = document.querySelector('.cursor');
+    const scrollButtons = [...document.querySelectorAll('[data-target]')];
+    const contentSections = [...document.querySelectorAll('[data-scroll-section]')];
+    const navItems = [...document.querySelectorAll('.nav-item')];
+    const moveUpButton = document.getElementById('moveUpButton');
+    const moveDownButton = document.getElementById('moveDownButton');
+
+    const topbar = document.querySelector('.topbar');
+    const pageSections = [...document.querySelectorAll('section[data-scroll-section]')];
+    let currentIndex = 0;
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    const getSectionTargetTop = (section) => {
+      const rect = section.getBoundingClientRect();
+      const absoluteTop = window.scrollY + rect.top;
+      const centered = absoluteTop - (window.innerHeight - rect.height) / 2;
+      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+      return clamp(centered, 0, maxScroll);
+    };
+
+    const scrollToSection = (section, behavior = 'smooth') => {
+      if (!section) return;
+      window.scrollTo({ top: getSectionTargetTop(section), behavior });
+      window.setTimeout(syncChrome, behavior === 'smooth' ? 700 : 0);
+    };
+
+    const refreshSectionIndex = () => {
+      const viewportCenter = window.scrollY + window.innerHeight / 2;
+      let nearestIndex = 0;
+      let nearestDistance = Infinity;
+
+      pageSections.forEach((section, index) => {
+        const rect = section.getBoundingClientRect();
+        const sectionCenter = window.scrollY + rect.top + rect.height / 2;
+        const distance = Math.abs(sectionCenter - viewportCenter);
+        if (distance < nearestDistance) {
+          nearestDistance = distance;
+          nearestIndex = index;
+        }
+      });
+
+      currentIndex = nearestIndex;
+    };
+
+    const syncMoveButtons = () => {
+      if (moveUpButton) {
+        moveUpButton.hidden = currentIndex <= 0;
+      }
+    };
+
+    const setActive = (id) => {
+      navItems.forEach((item) => item.classList.toggle('is-active', item.dataset.target === id));
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          const id = entry.target.id;
+          if (id !== 'hero') {
+            setActive(id);
+          }
+        }
+      });
+    }, { threshold: 0.22 });
+
+    contentSections.forEach((section) => observer.observe(section));
+
+    setActive('about');
+
+    const jumpTo = (id) => {
+      const target = document.getElementById(id);
+      if (!target) return;
+      scrollToSection(target);
+    };
+
+    const moveToIndex = (index) => {
+      const safeIndex = clamp(index, 0, pageSections.length - 1);
+      currentIndex = safeIndex;
+      scrollToSection(pageSections[safeIndex]);
+      syncMoveButtons();
+    };
+
+    scrollButtons.forEach((button) => {
+      button.addEventListener('click', () => jumpTo(button.dataset.target));
+    });
+
+    const heroTween = () => {
+      if (!window.gsap) return;
+      gsap.from('.hero-copy > *', {
+        y: 34,
+        opacity: 0,
+        duration: 0.95,
+        ease: 'power3.out',
+        stagger: 0.09,
+        delay: 0.15
+      });
+      gsap.from('.hero-stage', {
+        y: 50,
+        opacity: 0,
+        duration: 1.05,
+        ease: 'power3.out',
+        delay: 0.25
+      });
+      gsap.from('.topbar', {
+        y: -24,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    };
+
+    heroTween();
+
+    const updatePointer = (event) => {
+      const x = `${event.clientX}px`;
+      const y = `${event.clientY}px`;
+      document.documentElement.style.setProperty('--mx', x);
+      document.documentElement.style.setProperty('--my', y);
+      if (cursor) {
+        cursor.style.transform = `translate3d(${event.clientX - 11}px, ${event.clientY - 11}px, 0)`;
+      }
+    };
+
+    window.addEventListener('mousemove', updatePointer, { passive: true });
+    window.addEventListener('resize', refreshSectionIndex);
+
+    const syncChrome = () => {
+      const hideBar = window.scrollY > 320;
+      topbar.style.transform = hideBar ? 'translateY(-100%)' : 'translateY(0)';
+
+      const viewportCenter = window.scrollY + window.innerHeight / 2;
+      let activeSection = pageSections[0];
+
+      for (const section of pageSections) {
+        const rect = section.getBoundingClientRect();
+        const sectionCenter = window.scrollY + rect.top + rect.height / 2;
+        if (sectionCenter <= viewportCenter + 40) {
+          activeSection = section;
+        }
+      }
+
+      if (activeSection && activeSection.id !== 'hero') {
+        setActive(activeSection.id);
+      }
+      refreshSectionIndex();
+      syncMoveButtons();
+    };
+
+    let scrollTicking = false;
+    window.addEventListener('scroll', () => {
+      if (scrollTicking) return;
+      scrollTicking = true;
+      window.requestAnimationFrame(() => {
+        syncChrome();
+        scrollTicking = false;
+      });
+    }, { passive: true });
+
+    window.addEventListener('load', () => {
+      syncChrome();
+      refreshSectionIndex();
+    });
+
+    document.querySelectorAll('img').forEach((img) => {
+      if (img.complete) return;
+      img.addEventListener('load', syncChrome, { once: true });
+      img.addEventListener('error', syncChrome, { once: true });
+    });
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown' || event.key === 'PageDown') {
+        event.preventDefault();
+        moveToIndex(currentIndex + 1);
+      }
+
+      if (event.key === 'ArrowUp' || event.key === 'PageUp') {
+        event.preventDefault();
+        moveToIndex(currentIndex - 1);
+      }
+    });
+
+    window.addEventListener('wheel', syncChrome, { passive: true });
+
+    moveDownButton.addEventListener('click', () => moveToIndex(currentIndex + 1));
+    moveUpButton.addEventListener('click', () => moveToIndex(currentIndex - 1));
+
+    // Nav panel dragging and collapse
+    const nav = document.querySelector('.nav');
+    const navToggle = document.getElementById('navToggle');
+    let isDragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
+
+    nav.addEventListener('mousedown', (e) => {
+      if (e.target === navToggle || navToggle.contains(e.target)) return;
+      isDragging = true;
+      offsetX = e.clientX - nav.getBoundingClientRect().left;
+      offsetY = e.clientY - nav.getBoundingClientRect().top;
+      nav.style.cursor = 'grabbing';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const newLeft = e.clientX - offsetX;
+      const newTop = e.clientY - offsetY;
+      const maxLeft = window.innerWidth - nav.offsetWidth;
+      const maxTop = window.innerHeight - nav.offsetHeight;
+      nav.style.position = 'fixed';
+      nav.style.left = Math.max(0, Math.min(newLeft, maxLeft)) + 'px';
+      nav.style.right = 'auto';
+      nav.style.top = Math.max(0, Math.min(newTop, maxTop)) + 'px';
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (isDragging) {
+        isDragging = false;
+        nav.style.cursor = 'grab';
+      }
+    });
+
+    navToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      nav.classList.toggle('is-collapsed');
+    });
+
+    syncChrome();
+  </script>
+</body>
+
+</html>
